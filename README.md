@@ -20,4 +20,4 @@ clone this repo, enter directory, and run `npm install` for dev dependencies, th
 
 [See API Reference for documentation](https://github.com/opsimathically/multidb/tree/main/docs)
 
-[See unit tests for more direct usage examples](https://github.com/opsimathically/multidb/test/index.test.ts)
+[See unit tests for more direct usage examples](https://github.com/opsimathically/multidb/blob/main/test/index.test.ts)
