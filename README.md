@@ -18,6 +18,6 @@ clone this repo, enter directory, and run `npm install` for dev dependencies, th
 
 ## Usage
 
-[See API Reference for documentation](https://github.com/opsimathically/multidb/docs/)
+[See API Reference for documentation](https://github.com/opsimathically/multidb/tree/main/docs)
 
 [See unit tests for more direct usage examples](https://github.com/opsimathically/multidb/test/index.test.ts)
