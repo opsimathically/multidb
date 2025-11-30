@@ -38,7 +38,18 @@ export interface coll_change_stream_handler_t<
   TDoc extends Document = Document
 > {
   mongodb_ref: MongoDB | undefined;
+  db: string | undefined;
   collection: string | undefined;
+  change_stream:
+    | ChangeStream<Document, ChangeStreamDocument<Document>>
+    | undefined;
+
+  onChange: (change: ChangeStreamDocument<TDoc>) => void | Promise<void>;
+}
+
+export interface db_change_stream_handler_t<TDoc extends Document = Document> {
+  mongodb_ref: MongoDB | undefined;
+  db: string | undefined;
   change_stream:
     | ChangeStream<Document, ChangeStreamDocument<Document>>
     | undefined;
@@ -927,7 +938,20 @@ export class MongoDB {
   // %%% Change Streams %%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  async subscribeToDatabaseChangeStream(params: { db: string }) {
+  // IMPORTANT: Change streams only work on servers which are part of a
+  // replication set.  An ordinary mongodb install will not emit any change
+  // events.  The README.md document associated with this package has instructions
+  // on how to configure your mongodb as a standalone replication set.  If you need
+  // instructions on how to configure a sharded cluster, you're probably already
+  // well on the process of learning how to create a sharded cluster or administering one.
+
+  // This will subscribe to a databases change stream, this means you'll see
+  // all events, inserts, deletes, updates, etc on all collections, as well as
+  // things like database collection drops.  Use this if you want to monitor everything.
+  async subscribeToDatabaseChangeStream(params: {
+    db: string;
+    event_handler: db_change_stream_handler_t;
+  }) {
     // set self reference
     const mongodb_ref = this;
     if (!mongodb_ref.MongoClient) return false;
@@ -935,9 +959,31 @@ export class MongoDB {
     // select the DB
     const db = mongodb_ref.MongoClient.db(params.db);
     if (!db) return false;
+
+    // create change stream
+    const change_stream = db.watch();
+
+    // set class members
+    params.event_handler.mongodb_ref = mongodb_ref;
+    params.event_handler.db = params.db;
+    params.event_handler.change_stream = change_stream;
+
+    // create callback function
+    let cb_func = function (
+      this: db_change_stream_handler_t,
+      event_doc: ChangeStreamDocument<Document>
+    ) {
+      this.onChange(event_doc);
+    };
+    cb_func = cb_func.bind(params.event_handler);
+
+    // bind the change callback
+    change_stream.on('change', cb_func);
+    return true;
   }
 
-  // monitor changes to collection
+  // Monitor changes on a specific collection.  Will only show events related
+  // to a specific collection.
   async subscribeToCollectionChangeStream(params: {
     db: string;
     collection: string;
@@ -960,6 +1006,7 @@ export class MongoDB {
 
     // set class members
     params.event_handler.mongodb_ref = mongodb_ref;
+    params.event_handler.db = params.db;
     params.event_handler.collection = params.collection;
     params.event_handler.change_stream = change_stream;
 

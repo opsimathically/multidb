@@ -3,7 +3,10 @@ import assert from 'node:assert';
 import { MongoDB } from '@src/index';
 import { ChangeStream, ChangeStreamDocument, Document } from 'mongodb';
 
-import type { coll_change_stream_handler_t } from '@src/index';
+import type {
+  coll_change_stream_handler_t,
+  db_change_stream_handler_t
+} from '@src/index';
 import { createReadStream } from 'node:fs';
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -87,12 +90,12 @@ import { createReadStream } from 'node:fs';
     );
 
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    // %%% Monitor Change Stream %%%%%%%%%%%%%%%%%%%%
+    // %%% Monitor Collection Change Stream %%%%%%%%%
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     // Change stream callbacks are handled via a change stream handler.  We do this
     // to make it easier to pass data through to the handlers application logic.
-    class ArbitraryEventHandlerClassName
+    class ArbitraryCollectionEventHandlerClassName
       implements coll_change_stream_handler_t
     {
       // custom elements
@@ -100,6 +103,7 @@ import { createReadStream } from 'node:fs';
 
       // mandatory interface implementations
       mongodb_ref: MongoDB | undefined;
+      db: string | undefined;
       collection: string | undefined;
       change_stream:
         | ChangeStream<Document, ChangeStreamDocument<Document>>
@@ -127,13 +131,65 @@ import { createReadStream } from 'node:fs';
     }
 
     // create handler instance
-    const change_stream_event_handler = new ArbitraryEventHandlerClassName();
+    const coll_change_stream_event_handler =
+      new ArbitraryCollectionEventHandlerClassName();
 
     // create event listener
     await mongodb_client.subscribeToCollectionChangeStream({
       db: db_name,
       collection: collection_name,
-      event_handler: change_stream_event_handler
+      event_handler: coll_change_stream_event_handler
+    });
+
+    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    // %%% Monitor Database Change Stream %%%%%%%%%%%
+    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    // Change stream callbacks are handled via a change stream handler.  We do this
+    // to make it easier to pass data through to the handlers application logic.
+    class ArbitraryDatabaseEventHandlerClassName
+      implements db_change_stream_handler_t
+    {
+      // custom elements
+      arbitrary_activation_count: number = 0;
+
+      // mandatory interface implementations
+      mongodb_ref: MongoDB | undefined;
+      db: string | undefined;
+      change_stream:
+        | ChangeStream<Document, ChangeStreamDocument<Document>>
+        | undefined;
+
+      // class constructor
+      constructor() {}
+
+      // event processor
+      async onChange(change_event: ChangeStreamDocument<Document>) {
+        const self_ref = this;
+        self_ref.arbitrary_activation_count++;
+
+        // switch on the operation type
+        switch (change_event.operationType) {
+          case 'drop':
+            console.log('Drop detected.');
+            break;
+          case 'dropDatabase':
+            console.log('Drop database detected.');
+            break;
+          default:
+            break;
+        }
+      }
+    }
+
+    // create handler instance
+    const db_change_stream_event_handler =
+      new ArbitraryDatabaseEventHandlerClassName();
+
+    // create event listener
+    await mongodb_client.subscribeToDatabaseChangeStream({
+      db: db_name,
+      event_handler: db_change_stream_event_handler
     });
 
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -650,8 +706,12 @@ import { createReadStream } from 'node:fs';
 
     // ensure we've seen some event activations via stream by the time we've gotten here
     assert.ok(
-      change_stream_event_handler.arbitrary_activation_count,
-      'Failed to detect any events via change stream event handler.'
+      coll_change_stream_event_handler.arbitrary_activation_count,
+      'Failed to detect any events via collection change stream event handler.'
+    );
+    assert.ok(
+      db_change_stream_event_handler.arbitrary_activation_count,
+      'Failed to detect any events via database change stream event handler.'
     );
 
     // disconnect the client
