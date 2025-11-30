@@ -23,7 +23,9 @@ import {
   DistinctOptions,
   CountDocumentsOptions,
   EstimatedDocumentCountOptions,
-  DeleteResult
+  DeleteResult,
+  ChangeStream,
+  ChangeStreamDocument
 } from 'mongodb';
 
 import crypto from 'crypto';
@@ -31,6 +33,18 @@ import { Readable } from 'stream';
 import { MongoDBStreamHash } from './MongoDBStreamHash.class';
 
 export type mongodb_databases_t = Record<string, Record<string, boolean>>;
+
+export interface coll_change_stream_handler_t<
+  TDoc extends Document = Document
+> {
+  mongodb_ref: MongoDB | undefined;
+  collection: string | undefined;
+  change_stream:
+    | ChangeStream<Document, ChangeStreamDocument<Document>>
+    | undefined;
+
+  onChange: (change: ChangeStreamDocument<TDoc>) => void | Promise<void>;
+}
 
 export type file_data_t = {
   file_doc: Document;
@@ -54,6 +68,7 @@ export class MongoDB {
     authdb: string;
     password: string;
     port: number;
+    replicaSet?: string;
     maxPoolSize?: number | undefined;
     tls?: boolean | undefined;
     tlsInsecure?: boolean | undefined;
@@ -67,6 +82,7 @@ export class MongoDB {
     // add tls flags
     if (params.tls === true) connect_uri += '&tls=true';
     if (params.tlsInsecure === true) connect_uri += '&tlsInsecure=true';
+    if (params.replicaSet) connect_uri += `&replicaSet=${params.replicaSet}`;
 
     // add connection pool size if present
     if (Number.isInteger(params.maxPoolSize) === true)
@@ -901,12 +917,64 @@ export class MongoDB {
 
     // gather collection
     const collection = db.collection(params.collection);
-
-    // ensure we have collection
     if (!collection) return null;
 
     // delete records
     return await collection.deleteMany(params.find);
+  }
+
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% Change Streams %%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  async subscribeToDatabaseChangeStream(params: { db: string }) {
+    // set self reference
+    const mongodb_ref = this;
+    if (!mongodb_ref.MongoClient) return false;
+
+    // select the DB
+    const db = mongodb_ref.MongoClient.db(params.db);
+    if (!db) return false;
+  }
+
+  // monitor changes to collection
+  async subscribeToCollectionChangeStream(params: {
+    db: string;
+    collection: string;
+    event_handler: coll_change_stream_handler_t;
+  }): Promise<boolean> {
+    // set self reference
+    const mongodb_ref = this;
+    if (!mongodb_ref.MongoClient) return false;
+
+    // select the DB
+    const db = mongodb_ref.MongoClient.db(params.db);
+    if (!db) return false;
+
+    // gather collection
+    const collection = db.collection(params.collection);
+    if (!collection) return false;
+
+    // create change stream
+    const change_stream = collection.watch();
+
+    // set class members
+    params.event_handler.mongodb_ref = mongodb_ref;
+    params.event_handler.collection = params.collection;
+    params.event_handler.change_stream = change_stream;
+
+    // create callback function
+    let cb_func = function (
+      this: coll_change_stream_handler_t,
+      event_doc: ChangeStreamDocument<Document>
+    ) {
+      this.onChange(event_doc);
+    };
+    cb_func = cb_func.bind(params.event_handler);
+
+    // bind the change callback
+    change_stream.on('change', cb_func);
+    return true;
   }
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1165,6 +1233,7 @@ export class MongoDB {
     return null;
   }
 
+  // delete a single file
   async GFS_deleteSingleFile(params: {
     db: string;
     bucket_name: string;
@@ -1295,6 +1364,7 @@ export class MongoDB {
     return file_id;
   }
 
+  // Store file from stream.
   async GFS_storeFileFromStream(params: {
     db: string;
     bucket_name: string;

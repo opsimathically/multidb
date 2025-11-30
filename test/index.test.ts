@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert';
 import { MongoDB } from '@src/index';
+import { ChangeStream, ChangeStreamDocument, Document } from 'mongodb';
+
+import type { coll_change_stream_handler_t } from '@src/index';
 import { createReadStream } from 'node:fs';
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -13,6 +16,7 @@ import { createReadStream } from 'node:fs';
     host: '127.0.0.1',
     username: 'your_test_user',
     authdb: 'admin',
+    replicaSet: 'rs0',
     password: 'SET_YOUR_TEST_PASSWORD_HERE',
     port: 27017
   };
@@ -34,7 +38,10 @@ import { createReadStream } from 'node:fs';
     }
 
     // ensure we have a client present
-    assert(mongodb_client.MongoClient);
+    assert.ok(
+      mongodb_client.MongoClient,
+      "We don't have a MongoClient available."
+    );
 
     // attempt to ping admin database
     const ping_response = await mongodb_client.MongoClient.db('admin').command({
@@ -42,24 +49,30 @@ import { createReadStream } from 'node:fs';
     });
 
     // ensure the ping response matches
-    assert(ping_response.ok === 1);
+    assert.ok(ping_response.ok === 1, 'Could not ping admin database');
 
     // ensure we can gather databases
     const databases = await mongodb_client.gatherDatabasesAndCollections();
-    assert(databases);
+    assert.ok(databases, 'Could not gather databases.');
 
     // run single database check
-    assert(await mongodb_client.databaseExists('admin'));
+    assert.ok(
+      await mongodb_client.databaseExists('admin'),
+      'Admin database does not exist.'
+    );
 
     // create a new database
     const db_created_ok = await mongodb_client.createDatabase({
       name: db_name,
       info: { description: 'any description' }
     });
-    assert(db_created_ok);
+    assert.ok(db_created_ok, 'Database creation failed.');
 
     // ensure the test database exists
-    assert(await mongodb_client.databaseExists('test_db'));
+    assert.ok(
+      await mongodb_client.databaseExists('test_db'),
+      'Database does not exist.'
+    );
 
     // create a collection
     await mongodb_client.createCollection({
@@ -68,7 +81,60 @@ import { createReadStream } from 'node:fs';
     });
 
     // ensure the collection exists
-    assert(await mongodb_client.collectionExists(db_name, collection_name));
+    assert.ok(
+      await mongodb_client.collectionExists(db_name, collection_name),
+      'Collection does not exist.'
+    );
+
+    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    // %%% Monitor Change Stream %%%%%%%%%%%%%%%%%%%%
+    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    // Change stream callbacks are handled via a change stream handler.  We do this
+    // to make it easier to pass data through to the handlers application logic.
+    class ArbitraryEventHandlerClassName
+      implements coll_change_stream_handler_t
+    {
+      // custom elements
+      arbitrary_activation_count: number = 0;
+
+      // mandatory interface implementations
+      mongodb_ref: MongoDB | undefined;
+      collection: string | undefined;
+      change_stream:
+        | ChangeStream<Document, ChangeStreamDocument<Document>>
+        | undefined;
+
+      // class constructor
+      constructor() {}
+
+      // event processor
+      async onChange(change_event: ChangeStreamDocument<Document>) {
+        const self_ref = this;
+        self_ref.arbitrary_activation_count++;
+        // switch on the operation type
+        switch (change_event.operationType) {
+          case 'insert':
+            console.log('Insert detected.');
+            break;
+          case 'update':
+            console.log('Update detected.');
+            break;
+          default:
+            break;
+        }
+      }
+    }
+
+    // create handler instance
+    const change_stream_event_handler = new ArbitraryEventHandlerClassName();
+
+    // create event listener
+    await mongodb_client.subscribeToCollectionChangeStream({
+      db: db_name,
+      collection: collection_name,
+      event_handler: change_stream_event_handler
+    });
 
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     // %%% Indexing Tests %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -581,6 +647,12 @@ import { createReadStream } from 'node:fs';
 
     // ensure the test database no longer exists
     assert(!(await mongodb_client.databaseExists(db_name)));
+
+    // ensure we've seen some event activations via stream by the time we've gotten here
+    assert.ok(
+      change_stream_event_handler.arbitrary_activation_count,
+      'Failed to detect any events via change stream event handler.'
+    );
 
     // disconnect the client
     await mongodb_client.disconnect();
