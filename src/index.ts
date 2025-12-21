@@ -68,8 +68,12 @@ import type {
 import { MariaDBDumpImporter } from './classes/mariadb/MariaDBDumpImporter.class';
 
 export type {
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% MongoDB %%%%%%%%%%%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   coll_change_stream_handler_t,
   db_change_stream_handler_t,
+
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% MariaDBError %%%%%%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -123,7 +127,9 @@ export type {
 
 // export data
 export {
-  // mongodb exports
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% MongoDB %%%%%%%%%%%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   MongoDB,
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
