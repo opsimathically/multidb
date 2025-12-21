@@ -69,19 +69,13 @@ import type {
 } from './classes/mariadb/MariaDBDumpImporter.class';
 import { MariaDBDumpImporter } from './classes/mariadb/MariaDBDumpImporter.class';
 
-// export data
-export {
-  // mongodb exports
-  MongoDB,
+export type {
   coll_change_stream_handler_t,
   db_change_stream_handler_t,
-
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% MariaDBError %%%%%%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   mariadb_catlayer_t,
-  MariaDBError,
-
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% MariaDB %%%%%%%%%%%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -89,25 +83,11 @@ export {
   mariadb_selection_query_t,
   mariadb_table_collumn_definition_t,
   mariadb_table_definition_t,
-  MariaDB,
-
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // %%% MariaDBQueryTemplate %%%%%%%%%%%%%%%%%%%%
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  MariaDBQueryTemplate,
-
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // %%% MariaDBPool %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  MariaDBPool,
-
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% MariaDBDumpImporter %%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   mysql_importer_options_t,
   mysql_import_result_t,
-  MariaDBDumpImporter,
-
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% MariaDBDatabaseSchemaIntrospector %%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -133,8 +113,6 @@ export {
   information_schema_referential_constraints_row_t,
   information_schema_check_constraints_row_t,
   information_schema_views_row_t,
-  MariaDBDatabaseSchemaIntrospector,
-
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% MariaDBSQLQueryValidator %%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -142,7 +120,47 @@ export {
   validation_error_t,
   validation_warning_t,
   validation_result_t,
-  validator_options_t,
+  validator_options_t
+};
+
+// export data
+export {
+  // mongodb exports
+  MongoDB,
+
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% MariaDBError %%%%%%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  MariaDBError,
+
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% MariaDB %%%%%%%%%%%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  MariaDB,
+
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% MariaDBQueryTemplate %%%%%%%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  MariaDBQueryTemplate,
+
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% MariaDBPool %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  MariaDBPool,
+
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% MariaDBDumpImporter %%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  MariaDBDumpImporter,
+
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% MariaDBDatabaseSchemaIntrospector %%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  MariaDBDatabaseSchemaIntrospector,
+
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% MariaDBSQLQueryValidator %%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   SQLTokenizer,
   SQLDMLParser,
   MariaDBSQLQueryValidator
