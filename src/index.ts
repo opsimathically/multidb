@@ -61,8 +61,6 @@ import type {
 } from './classes/mariadb/MariaDBDatabaseSchemaIntrospector.class';
 import { MariaDBDatabaseSchemaIntrospector } from './classes/mariadb/MariaDBDatabaseSchemaIntrospector.class';
 
-//
-
 import type {
   mysql_importer_options_t,
   mysql_import_result_t

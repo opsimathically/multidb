@@ -11,6 +11,12 @@ is a possibility of pollutions, injections, etc.  Be very careful.  Define thing
 not allow user input into any parameters.  Use at your own risk.
 */
 
+type blah_t = {
+  hello: string;
+};
+
+export { blah_t };
+
 /*
 Usage example:
 

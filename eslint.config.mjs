@@ -10,6 +10,11 @@ export default [
   ...tseslint.configs.recommended,
   {
     rules: {
+      '@typescript-eslint/consistent-type-exports': 'error',
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        { prefer: 'type-imports' }
+      ],
       '@typescript-eslint/no-this-alias': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       'no-debugger': 'off',
