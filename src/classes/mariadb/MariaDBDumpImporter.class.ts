@@ -1,5 +1,6 @@
 import { spawn } from 'child_process';
-import { createReadStream, statSync, ReadStream } from 'fs';
+import { createReadStream, statSync } from 'fs';
+import type { ReadStream } from 'fs';
 
 /*
 This class is a shell wrapper that feeds a file into the mysql binary.  This is a very
@@ -10,12 +11,6 @@ to simply wrap the mysql binary and feed mysqldumps into the mysql binary direct
 is a possibility of pollutions, injections, etc.  Be very careful.  Define things statically, do 
 not allow user input into any parameters.  Use at your own risk.
 */
-
-type blah_t = {
-  hello: string;
-};
-
-export { blah_t };
 
 /*
 Usage example:

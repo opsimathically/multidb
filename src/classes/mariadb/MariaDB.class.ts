@@ -1,4 +1,5 @@
-import mysql, { Pool, RowDataPacket, PoolOptions } from 'mysql2/promise';
+import mysql from 'mysql2/promise';
+import type { Pool, RowDataPacket, PoolOptions } from 'mysql2/promise';
 import mysql_sync from 'mysql2';
 
 // So, what is this?

@@ -2,13 +2,13 @@
 // that the mysql2/promise interface doesn't expose the callback/stream capabilities
 // of the non-promise based code.  This is why there's a pool and sync_pool member
 // wthin the pool class definition.
-import { Pool, PoolOptions } from 'mysql2/promise';
-import { Pool as CallbackPool } from 'mysql2';
+import type { Pool, PoolOptions } from 'mysql2/promise';
+import type { Pool as CallbackPool } from 'mysql2';
 
-import { MariaDBDatabaseSchemaIntrospector } from './MariaDBDatabaseSchemaIntrospector.class';
-import { MariaDBSQLQueryValidator } from './MariaDBSQLQueryValidator.class';
+import type { MariaDBDatabaseSchemaIntrospector } from './MariaDBDatabaseSchemaIntrospector.class';
+import type { MariaDBSQLQueryValidator } from './MariaDBSQLQueryValidator.class';
 import { DualIndexStore } from '../dualstore/DualIndexStore.class';
-import { MariaDBQueryTemplate } from './MariaDBQueryTemplate.class';
+import type { MariaDBQueryTemplate } from './MariaDBQueryTemplate.class';
 import type { schema_snapshot_t } from './MariaDBDatabaseSchemaIntrospector.class';
 
 export class MariaDBPool {

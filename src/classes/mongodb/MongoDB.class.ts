@@ -1,5 +1,4 @@
-import {
-  MongoClient,
+import type {
   Db,
   Collection,
   OptionalId,
@@ -13,7 +12,6 @@ import {
   FindOptions,
   FindCursor,
   WithId,
-  GridFSBucket,
   GridFSBucketWriteStream,
   ObjectId,
   AggregateOptions,
@@ -28,8 +26,10 @@ import {
   ChangeStreamDocument
 } from 'mongodb';
 
+import { MongoClient, GridFSBucket } from 'mongodb';
+
 import crypto from 'crypto';
-import { Readable } from 'stream';
+import type { Readable } from 'stream';
 import { MongoDBStreamHash } from './MongoDBStreamHash.class';
 
 export type mongodb_databases_t = Record<string, Record<string, boolean>>;

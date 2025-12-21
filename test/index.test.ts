@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert';
 
-import { ChangeStream, ChangeStreamDocument, Document } from 'mongodb';
+import type { ChangeStream, ChangeStreamDocument, Document } from 'mongodb';
 
 import {
   MongoDB,
@@ -17,7 +17,7 @@ import type {
 } from '@src/index';
 
 import { createReadStream } from 'node:fs';
-import { ResultSetHeader } from 'mysql2';
+import type { ResultSetHeader } from 'mysql2';
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // %%% Configurations %%%%%%%%%%%%%%%%%%%%%%%%%

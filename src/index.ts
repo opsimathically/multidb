@@ -5,7 +5,7 @@ import type {
 } from './classes/mongodb/MongoDB.class';
 import { MongoDB } from './classes/mongodb/MongoDB.class';
 
-import {
+import type {
   mariadb_query_data_t,
   mariadb_selection_query_t,
   mariadb_table_collumn_definition_t,
@@ -21,7 +21,7 @@ import { MariaDBQueryTemplate } from './classes/mariadb/MariaDBQueryTemplate.cla
 
 import { MariaDBPool } from './classes/mariadb/MariaDBPool.class';
 
-import {
+import type {
   query_kind_t,
   validation_error_t,
   validation_warning_t,

@@ -1,5 +1,6 @@
-import mysql, { PoolConnection } from 'mysql2';
-import { MariaDBPool } from './MariaDBPool.class';
+import type mysql from 'mysql2';
+import type { PoolConnection } from 'mysql2';
+import type { MariaDBPool } from './MariaDBPool.class';
 
 export type QueryTemplateRow = Record<string, any>;
 
