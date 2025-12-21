@@ -4,6 +4,16 @@ This is not intended for use by every person, in every case. It is designed for 
 
 The intent of this code is to take code that I use for database purposes, within my own tool libraries and standardize them into a single library which can be imported and easily used for the development and integration of new tools or packages I'm developing.
 
+## MariaDB
+
+The design philosophy of these classes is to provide a middle layer which is not an ORM, but is also not completely just perfectly raw SQL. The goal is to provide a typed interface where queries can be defined, arguments can be typed, and results can be similarly typed. Schemeas are parsed via an introspector, queries are compared against that parsed schema, and out of date/wrong queries can be detected at application runtime. For me personally, on my projects, one of the key issues I have with RDBMS is that I constantly want to prototype new database designs but the queries often fall out of syntax with the running schema. With these classes I can preload the queries and compare them against the current schema before any of the loaded queries ever run, thus preventing likely problems. This is not a perfect solution, and I in no way claim it is, but with SQL and it's stringyness, perfect solutions are a bit computationally impractical. Our schema introspector is designed to work with SELECT, INSERT, UPDATE, and DELETE queries. It does not attempt to do any work with stored procedures or anything similar.
+
+We provide each validated query a class instance with an execute method, which can run either in a streamed row by row callback to alleviate potential memory consumption issues, or without a callback to retrieve all rows at once.
+
+## MariaDB, why not PostgreSQL?
+
+I use mariadb instead of mysql for most of my RDBMS requirements. The reason I don't use postgres, is mostly a legacy thing. Postgres wasn't particularly popular in the past, and I am paleolithic, and a lot of features felt like they were missing prior to recency, and long story short I'm not sure the juice would be worth the effort put into converting all my SQL into postgres. MariaDB does what I need, for what I need it for, and maybe in the future I'll consider postgresql but currently I'm fine with mariadb.
+
 ## MongoDB Streaming Events (watch)
 
 To use streaming events your server must be configured to be a replication set. A single server can be a replication set, and there is virtually no downside to being configured in that state. However, a default install is not in that configuration.
