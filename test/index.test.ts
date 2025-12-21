@@ -1,21 +1,21 @@
 import test from 'node:test';
 import assert from 'node:assert';
-import { MongoDB } from '@src/index';
+
 import { ChangeStream, ChangeStreamDocument, Document } from 'mongodb';
 
-import { MariaDBDumpImporter } from '@src/classes/mariadb/MariaDBDumpImporter.class';
-import { MariaDB } from '@src/index';
-
-// import { mariadb_query_data_t } from '@src/index';
-// import { MariaDBSelectQueryModel, MariaDBSelectQueryError } from '@src/index';
-
-import { MariaDBDatabaseSchemaIntrospector } from '@src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class';
-import { MariaDBSQLQueryValidator } from '@src/classes/mariadb/MariaDBSQLQueryValidator.class';
+import {
+  MongoDB,
+  MariaDBDumpImporter,
+  MariaDB,
+  MariaDBDatabaseSchemaIntrospector,
+  MariaDBSQLQueryValidator
+} from '@src/index';
 
 import type {
   coll_change_stream_handler_t,
   db_change_stream_handler_t
 } from '@src/index';
+
 import { createReadStream } from 'node:fs';
 import { ResultSetHeader } from 'mysql2';
 
@@ -121,7 +121,7 @@ import { ResultSetHeader } from 'mysql2';
         connect_timeout_seconds: 10
       });
 
-      const result = await importer.import_file(
+      const result = await importer.importFile(
         '/home/tourist/github_resume_projects/multidb/test/sqldumps_used_by_test/testdb.sql'
       );
       assert.ok(result?.exit_code === 0, 'Importing SQL schema failed.');
@@ -195,7 +195,7 @@ import { ResultSetHeader } from 'mysql2';
         await query_template.execute({
           args: ['blah', 'blah'],
           cb: async function (params) {
-            debugger;
+            if (params) debugger;
           }
         });
         const insert_result = await query_template.execute({

@@ -5,12 +5,13 @@ import type {
   FieldPacket
 } from 'mysql2/promise';
 import mysql from 'mysql2/promise';
+
 /*
 Full Disclosure: 
 This code was AI generated, but seems to work and does something quite amazing.
 */
 
-type version_row_t = RowDataPacket & { VERSION: string };
+export type version_row_t = RowDataPacket & { VERSION: string };
 
 export type sql_dialect_t = 'mysql' | 'mariadb';
 
@@ -117,9 +118,11 @@ export type introspector_options_t = {
   load_check_clauses?: boolean;
 };
 
-type query_rows_t<T extends RowDataPacket> = Promise<[T[], FieldPacket[]]>;
+export type query_rows_t<T extends RowDataPacket> = Promise<
+  [T[], FieldPacket[]]
+>;
 
-type information_schema_table_row_t = RowDataPacket & {
+export type information_schema_table_row_t = RowDataPacket & {
   TABLE_NAME: string;
   TABLE_TYPE: 'BASE TABLE' | 'VIEW';
   ENGINE: string | null;
@@ -127,7 +130,7 @@ type information_schema_table_row_t = RowDataPacket & {
   TABLE_COMMENT: string | null;
 };
 
-type information_schema_column_row_t = RowDataPacket & {
+export type information_schema_column_row_t = RowDataPacket & {
   TABLE_NAME: string;
   COLUMN_NAME: string;
   ORDINAL_POSITION: number;
@@ -146,7 +149,7 @@ type information_schema_column_row_t = RowDataPacket & {
   COLUMN_COMMENT: string | null;
 };
 
-type information_schema_statistics_row_t = RowDataPacket & {
+export type information_schema_statistics_row_t = RowDataPacket & {
   TABLE_NAME: string;
   INDEX_NAME: string;
   NON_UNIQUE: 0 | 1;
@@ -157,13 +160,13 @@ type information_schema_statistics_row_t = RowDataPacket & {
   INDEX_TYPE: string | null;
 };
 
-type information_schema_table_constraints_row_t = RowDataPacket & {
+export type information_schema_table_constraints_row_t = RowDataPacket & {
   TABLE_NAME: string;
   CONSTRAINT_NAME: string;
   CONSTRAINT_TYPE: 'PRIMARY KEY' | 'UNIQUE' | 'FOREIGN KEY' | 'CHECK';
 };
 
-type information_schema_key_column_usage_row_t = RowDataPacket & {
+export type information_schema_key_column_usage_row_t = RowDataPacket & {
   TABLE_NAME: string;
   CONSTRAINT_NAME: string;
   COLUMN_NAME: string;
@@ -172,19 +175,19 @@ type information_schema_key_column_usage_row_t = RowDataPacket & {
   REFERENCED_COLUMN_NAME: string | null;
 };
 
-type information_schema_referential_constraints_row_t = RowDataPacket & {
+export type information_schema_referential_constraints_row_t = RowDataPacket & {
   CONSTRAINT_NAME: string;
   TABLE_NAME: string;
   UPDATE_RULE: string | null;
   DELETE_RULE: string | null;
 };
 
-type information_schema_check_constraints_row_t = RowDataPacket & {
+export type information_schema_check_constraints_row_t = RowDataPacket & {
   CONSTRAINT_NAME: string;
   CHECK_CLAUSE: string | null;
 };
 
-type information_schema_views_row_t = RowDataPacket & {
+export type information_schema_views_row_t = RowDataPacket & {
   TABLE_NAME: string;
   VIEW_DEFINITION: string | null;
   DEFINER: string | null;

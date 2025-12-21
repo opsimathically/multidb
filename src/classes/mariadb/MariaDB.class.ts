@@ -1,5 +1,5 @@
 import mysql, { Pool, RowDataPacket, PoolOptions } from 'mysql2/promise';
-import mysql_sync, { Pool as CallbackPool } from 'mysql2';
+import mysql_sync from 'mysql2';
 
 // So, what is this?
 //
@@ -93,25 +93,17 @@ SET TRANSACTION
 
 */
 
+import { MariaDBError } from './MariaDBError.class';
 import { MariaDBDatabaseSchemaIntrospector } from './MariaDBDatabaseSchemaIntrospector.class';
 import { MariaDBSQLQueryValidator } from './MariaDBSQLQueryValidator.class';
 import { MariaDBPool } from './MariaDBPool.class';
 import { MariaDBQueryTemplate } from './MariaDBQueryTemplate.class';
-
 import crypto from 'crypto';
 
 // hash a string or buffer
 function sha1(input: string | Buffer): string {
   return crypto.createHash('sha1').update(input).digest('hex');
 }
-
-export type mariadb_catlayer_t =
-  | 'NOCAT'
-  | 'POOL'
-  | 'DDL'
-  | 'DML'
-  | 'DCL'
-  | 'TCL';
 
 export type mariadb_query_data_t = {
   prefix?: string;
@@ -137,32 +129,6 @@ export type mariadb_table_definition_t = {
   name: string;
   collumns: mariadb_table_collumn_definition_t[];
 };
-
-export class MariaDBError extends Error {
-  data: {
-    code: number;
-    type: string;
-    category: mariadb_catlayer_t;
-    msg: string;
-    extra?: any;
-  } = {
-    code: -1,
-    type: 'NOTYPE',
-    category: 'NOCAT',
-    msg: 'NOMSG'
-  };
-
-  constructor(params: {
-    msg: string;
-    type: string;
-    category: mariadb_catlayer_t;
-    code: number;
-    extra?: any;
-  }) {
-    super(params.msg);
-    this.data = params;
-  }
-}
 
 export class MariaDB {
   connection_pools: Record<string, MariaDBPool> = {};

@@ -2,10 +2,6 @@ import { spawn } from 'child_process';
 import { createReadStream, statSync, ReadStream } from 'fs';
 
 /*
-DANGER DANGER DANGER DANGER DANGER DANGER DANGER DANGER DANGER DANGER DANGER DANGER 
-DANGER DANGER DANGER DANGER DANGER DANGER DANGER DANGER DANGER DANGER DANGER DANGER 
-DANGER DANGER DANGER DANGER DANGER DANGER DANGER DANGER DANGER DANGER DANGER DANGER 
-
 This class is a shell wrapper that feeds a file into the mysql binary.  This is a very
 dangerous class, and care should be taken when using it.  I am aware of packages such as
 mysql-importer, but they are not guaranteed to perfectly parse things such as stored procedures,
@@ -30,7 +26,7 @@ Usage example:
     connect_timeout_seconds: 10
   });
 
-  const result = await importer.import_file("/path/to/dump.sql")
+  const result = await importer.importFile("/path/to/dump.sql")
 */
 
 export type mysql_importer_options_t = {
@@ -69,10 +65,10 @@ export class MariaDBDumpImporter {
     };
   }
 
-  public async import_from_stream(
+  public async importFromStream(
     sql_stream: ReadStream
   ): Promise<mysql_import_result_t> {
-    const args = this.build_args();
+    const args = this.buildArgs();
 
     const env = { ...process.env };
 
@@ -158,7 +154,7 @@ export class MariaDBDumpImporter {
     });
   }
 
-  public async import_file(dump_path: string): Promise<mysql_import_result_t> {
+  public async importFile(dump_path: string): Promise<mysql_import_result_t> {
     try {
       const st = statSync(dump_path);
       if (!st.isFile()) {
@@ -171,10 +167,10 @@ export class MariaDBDumpImporter {
     }
 
     const stream = createReadStream(dump_path);
-    return this.import_from_stream(stream);
+    return this.importFromStream(stream);
   }
 
-  private build_args(): string[] {
+  private buildArgs(): string[] {
     const args: string[] = [];
 
     if (this.options.host) args.push('-h', this.options.host);

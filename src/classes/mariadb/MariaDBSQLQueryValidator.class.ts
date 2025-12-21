@@ -329,7 +329,7 @@ function make_warning(
 
 /* ------------------------------ tokenizer logic ------------------------------ */
 
-export class sql_tokenizer {
+export class SQLTokenizer {
   public tokenize(sql: string): token_t[] {
     const tokens: token_t[] = [];
     let i = 0;
@@ -482,8 +482,8 @@ export class sql_tokenizer {
 
 /* ------------------------------- parser / ast ------------------------------- */
 
-export class sql_dml_parser {
-  private readonly tokenizer = new sql_tokenizer();
+export class SQLDMLParser {
+  private readonly tokenizer = new SQLTokenizer();
 
   public parse(sql: string): {
     ast: parsed_query_ast_t | null;
@@ -1669,7 +1669,7 @@ export class sql_dml_parser {
 
 export class MariaDBSQLQueryValidator {
   private readonly snapshot: schema_snapshot_t;
-  private readonly parser = new sql_dml_parser();
+  private readonly parser = new SQLDMLParser();
   private readonly opts: Required<validator_options_t>;
 
   constructor(schema_snapshot: schema_snapshot_t, opts?: validator_options_t) {
