@@ -140,6 +140,8 @@ import type { ResultSetHeader } from 'mysql2';
       const schema_snapshot =
         await introspector.load_database_schema('unit_test_db_1000');
 
+      await introspector.close();
+
       const query_validator = new MariaDBSQLQueryValidator(schema_snapshot);
 
       const validation_result = query_validator.validate(
@@ -228,132 +230,11 @@ import type { ResultSetHeader } from 'mysql2';
         'Results length is appropriate.'
       );
 
-      debugger;
-      /*
-      // check if the database exists
-      const db_exists = await mariadb_client.databaseExists({
-        pool: 'db1_pool1',
-        db: 'unit_test_db_1000'
+      const shutdown_ok = await mariadb_client.shutdown({
+        admin_pools: true,
+        standard_pools: true
       });
-      */
-
-      /*
-      assert.ok(
-        db_exists !== true,
-        'Unit test database exists when it should not.'
-      );
-      */
-
-      /*
-    let query_selection_model = new MariaDBSelectQueryModel({
-      table_name: 'network_discovery__udp_scan_discovery',
-      allowed_columns: {
-        id: true,
-        pentest_guid: true,
-        unique_sha256: true,
-        target_type: true,
-        target_plain: true,
-        target_detailed: true,
-        test_configuration: true,
-        test_result: true,
-        has_udp_ports_open: true,
-        number_of_udp_ports_open: true,
-        udp_ports_open_data: true,
-        udp_ports_open_data_simple: true,
-        udp_ports_all_data: true,
-        host_is_up: true,
-        insert_ts: true
-      },
-      allowed_compares: {
-        '=': true,
-        '!=': true,
-        '<': true,
-        '>': true,
-        '<=': true,
-        '>=': true,
-        LIKE: true,
-        'IS NOT': true,
-        NOT: true,
-        IN: true
-      },
-      allowed_prefixes: {
-        AND: true,
-        OR: true
-      }
-    });
-    */
-
-      /*
-    const select_query_set: any = await mariadb_client.generateSelectionQuery({
-      table_name: 'network_discovery__udp_scan_discovery',
-      selecting_columns: [
-        'id',
-        'pentest_guid',
-        'unique_sha256',
-        'target_type',
-        'target_plain',
-        'target_detailed',
-        'test_configuration',
-        'test_result',
-        'has_udp_ports_open',
-        'number_of_udp_ports_open',
-        'udp_ports_open_data',
-        'udp_ports_open_data_simple',
-        'udp_ports_all_data',
-        'host_is_up',
-        'insert_ts'
-      ],
-      allowed_prefixes: ['AND', 'OR'],
-      allowed_columns: [
-        'id',
-        'pentest_guid',
-        'unique_sha256',
-        'target_type',
-        'target_plain',
-        'target_detailed',
-        'test_configuration',
-        'test_result',
-        'has_udp_ports_open',
-        'number_of_udp_ports_open',
-        'udp_ports_open_data',
-        'udp_ports_open_data_simple',
-        'udp_ports_all_data',
-        'host_is_up',
-        'insert_ts'
-      ],
-      allowed_compares: [
-        '=',
-        '!=',
-        '<',
-        '>',
-        '<=',
-        '>=',
-        'LIKE',
-        'IS NOT',
-        'NOT',
-        'IN'
-      ],
-      query_data: [
-        {
-          column: 'number_of_udp_ports_open',
-          compare: '>',
-          value: 0
-        },
-        {
-          prefix: 'AND',
-          column: 'pentest_guid',
-          compare: '=',
-          value: '0000'
-        },
-        {
-          prefix: 'AND',
-          column: 'target_type',
-          compare: 'IN',
-          value: ['ipv4_address', 'domain_name']
-        }
-      ]
-    });
-    */
+      assert(shutdown_ok === true, 'Failed to shutdown all db pools.');
     });
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

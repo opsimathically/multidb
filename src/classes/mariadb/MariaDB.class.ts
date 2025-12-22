@@ -147,6 +147,7 @@ export class MariaDB {
   }): Promise<boolean> {
     const mariadb_ref = this;
     const admin_pool = mysql.createPool(params.pool_options);
+
     mariadb_ref.admin_pools[params.name] = admin_pool;
     return true;
   }
@@ -190,6 +191,46 @@ export class MariaDB {
 
     // set pool
     mariadb_ref.connection_pools[params.name] = mariadb_pool_instance;
+
+    return true;
+  }
+
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% Shutdown %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  async shutdown(params: {
+    admin_pools?: boolean;
+    standard_pools?: boolean;
+  }): Promise<boolean> {
+    const mariadb_ref = this;
+    if (params) {
+    }
+    const end_promises: Promise<void>[] = [];
+
+    // Shut down admin pools
+    for (const pool_name in mariadb_ref.admin_pools) {
+      const admin_pool = mariadb_ref.admin_pools[pool_name];
+      if (admin_pool) {
+        end_promises.push(admin_pool.end());
+      }
+    }
+
+    // Shut down regular connection pools
+    for (const pool_name in mariadb_ref.connection_pools) {
+      const pool_wrapper = mariadb_ref.connection_pools[pool_name];
+      if (pool_wrapper && pool_wrapper.pool) {
+        end_promises.push(pool_wrapper.pool.end());
+      }
+      if (pool_wrapper && pool_wrapper.sync_pool) {
+        pool_wrapper.sync_pool.end();
+      }
+    }
+
+    await Promise.all(end_promises);
+
+    mariadb_ref.admin_pools = {};
+    mariadb_ref.connection_pools = {};
 
     return true;
   }

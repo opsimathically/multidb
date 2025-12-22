@@ -10,6 +10,24 @@ The design philosophy of these classes is to provide a middle layer which is not
 
 We provide each validated query a class instance with an execute method, which can run either in a streamed row by row callback to alleviate potential memory consumption issues, or without a callback to retrieve all rows at once.
 
+```typescript
+const importer = new MariaDBDumpImporter({
+  mysql_bin_path: 'mysql',
+  host: '127.0.0.1',
+  port: 3306,
+  user: 'your_mariadb_user',
+  password: 'your_mariadb_password!',
+  database: 'unit_test_db_1000',
+  default_character_set: 'utf8mb4',
+  use_mysql_pwd_env: true,
+  connect_timeout_seconds: 10
+});
+
+const result = await importer.importFile(
+  '/home/tourist/github_resume_projects/multidb/test/sqldumps_used_by_test/testdb.sql'
+);
+```
+
 ## MariaDB, why not PostgreSQL?
 
 I use mariadb instead of mysql for most of my RDBMS requirements. The reason I don't use postgres, is mostly a legacy thing. Postgres wasn't particularly popular in the past, and I am paleolithic, and a lot of features felt like they were missing prior to recency, and long story short I'm not sure the juice would be worth the effort put into converting all my SQL into postgres. MariaDB does what I need, for what I need it for, and maybe in the future I'll consider postgresql but currently I'm fine with mariadb.
