@@ -11,6 +11,109 @@ The design philosophy of these classes is to provide a middle layer which is not
 We provide each validated query a class instance with an execute method, which can run either in a streamed row by row callback to alleviate potential memory consumption issues, or without a callback to retrieve all rows at once.
 
 ```typescript
+// Example: Using an Admin Pool to Create/Drop a database.
+
+// standard pool configuration
+const mariadb_pool_config = {
+  connectionLimit: 500,
+  waitForConnections: true,
+  queueLimit: 65535,
+  host: '127.0.0.1',
+  user: 'your_mariadb_user',
+  password: 'your_mariadb_password!',
+  debug: false,
+  insecureAuth: true
+};
+
+// admin pool configuration
+const mariadb_adminpool_config = {
+  connectionLimit: 500,
+  waitForConnections: true,
+  queueLimit: 65535,
+  host: '127.0.0.1',
+  user: 'your_mariadb_user',
+  password: 'your_mariadb_password!',
+  debug: false,
+  insecureAuth: true
+};
+
+// entry point
+(async () => {
+  // create new client handle
+  const mariadb_client = new MariaDB();
+
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% Admin Pools %%%%%%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  // add an admin pool (this will be used for things like create/drop database)
+  await mariadb_client.addAdminPool({
+    name: 'db1_adminpool1',
+    pool_options: mariadb_adminpool_config
+  });
+
+  await mariadb_client.dropDatabaseIfExists({
+    adminpool: 'db1_adminpool1',
+    db: 'unit_test_db_1000'
+  });
+
+  await mariadb_client.createDatabaseIfNotExists({
+    adminpool: 'db1_adminpool1',
+    db: 'unit_test_db_1000'
+  });
+
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% Standard Pools %%%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  // add a pool
+  await mariadb_client.addPool({
+    name: 'db1_pool1',
+    db: 'unit_test_db_1000',
+    pool_options: mariadb_pool_config
+  });
+
+  type example_insert_t = [string, string];
+
+  // add a query
+  const insert_query = await mariadb_client.addQuery<
+    example_inert_t,
+    ResultSetHeader
+  >({
+    pool: 'db1_pool1',
+    db: 'unit_test_db_1000',
+    name: 'testInsertQuery',
+    query: `
+        INSERT INTO unit_test_db_1000.new_table
+        (
+          column_1,
+          column_2
+        )
+        VALUES
+        (
+          ?,
+          ?
+        )`
+  });
+
+  // insert some data a single record at a time
+  await insert_query.execute({
+    args: ['something1', 'something2']
+  });
+  await insert_query.execute({
+    args: ['something3', 'something4']
+  });
+})();
+```
+
+## MariaDBDumpImporter
+
+This is a frontend for working with the mysql/mariadb binary directly for the purposes of importing dump files created with mysqldump. **\_This is by its nature, unsafe**,
+so do take care when using it. The reason we're using this instead of the npm mysql-import package, is simple: that package implements its own parsing logic and is
+not guaranteed to behave correctly. The mysql binary is guaranteed, so we need to bite the bullet and just accept that we'll be spawning processes and shoving data
+into the binary stdin.
+
+```typescript
 const importer = new MariaDBDumpImporter({
   mysql_bin_path: 'mysql',
   host: '127.0.0.1',

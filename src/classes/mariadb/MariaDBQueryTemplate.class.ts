@@ -2,8 +2,6 @@ import type mysql from 'mysql2';
 import type { PoolConnection } from 'mysql2';
 import type { MariaDBPool } from './MariaDBPool.class';
 
-export type QueryTemplateRow = Record<string, any>;
-
 export class MariaDBQueryTemplate<query_args_g, result_row_g> {
   query: string;
   db: string;

@@ -1,5 +1,10 @@
 import mysql from 'mysql2/promise';
-import type { Pool, RowDataPacket, PoolOptions } from 'mysql2/promise';
+import type {
+  Pool,
+  RowDataPacket,
+  PoolOptions,
+  ResultSetHeader
+} from 'mysql2/promise';
 import mysql_sync from 'mysql2';
 
 // So, what is this?
@@ -99,6 +104,8 @@ import { MariaDBDatabaseSchemaIntrospector } from './MariaDBDatabaseSchemaIntros
 import { MariaDBSQLQueryValidator } from './MariaDBSQLQueryValidator.class';
 import { MariaDBPool } from './MariaDBPool.class';
 import { MariaDBQueryTemplate } from './MariaDBQueryTemplate.class';
+import { MariaDBStackedQueryTemplate } from './MariaDBStackedQueryTemplate.class';
+
 import crypto from 'crypto';
 
 // hash a string or buffer
@@ -238,6 +245,116 @@ export class MariaDB {
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% Queries %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  async addStackedInsertQuery<query_args_g>(params: {
+    pool: string;
+    db: string;
+    name: string;
+    // eg: INSERT INTO table_name (col_name1, col_name2, col_name3)
+    query_insert_and_columns: string;
+    // trailing clause: eg ON DUPLICATE KEY UPDATE b = VALUES(b);
+    trailing_clause?: string;
+    // eg: The number of (?, ?, ?), which would be 3 here.
+    expected_value_set_count: number;
+  }) {
+    // MariaDBStackedQueryTemplate
+
+    const mariadb_ref = this;
+    const pool = mariadb_ref.connection_pools[params.pool];
+    if (!pool) {
+      return null;
+    }
+
+    const test_value_set = `(${Array(params.expected_value_set_count)
+      .fill('?')
+      .join(', ')})`;
+
+    let test_query = `${params.query_insert_and_columns} VALUES ${test_value_set}`;
+    if (params.trailing_clause) test_query += ' ' + params.trailing_clause;
+
+    // validation_result_t
+    const query_validation = pool.query_validator.validate(test_query);
+    if (!query_validation.ok) {
+      throw new MariaDBError({
+        msg: 'Query validation failed.',
+        code: 1001,
+        category: 'DDL',
+        type: 'QUERY_INVALID',
+        extra: query_validation
+      });
+      return null;
+    }
+
+    if (query_validation.kind !== 'insert') {
+      throw new MariaDBError({
+        msg: 'Stacked queries can only be insert queries.',
+        code: 1001,
+        category: 'DDL',
+        type: 'QUERY_INVALID',
+        extra: query_validation
+      });
+      return null;
+    }
+
+    // new MariaDBStackedQueryTemplate()
+
+    const query_hash = sha1(test_query);
+    const query = new MariaDBStackedQueryTemplate({
+      query_insert_and_columns: params.query_insert_and_columns,
+      trailing_clause: params.trailing_clause,
+      expected_value_set_count: params.expected_value_set_count,
+      db: params.db,
+      pool: pool,
+      sha1: query_hash
+    });
+
+    // set the query within our dual store
+    pool.stacked_query_templates.set(query_hash, query, [params.name]);
+
+    // gather the query by hash
+    return pool.stacked_query_templates.getByHash(
+      query_hash
+    ) as MariaDBStackedQueryTemplate<query_args_g, ResultSetHeader>;
+    debugger;
+    /*
+    // basic query checks
+    if (!params.query) return null;
+    if (typeof params.query !== 'string') return null;
+    if (params.query.length <= 0) return null;
+
+    // validation_result_t
+    const query_validation = pool.query_validator.validate(params.query);
+    if (!query_validation.ok) {
+      throw new MariaDBError({
+        msg: 'Query validation failed.',
+        code: 1001,
+        category: 'DDL',
+        type: 'QUERY_INVALID',
+        extra: query_validation
+      });
+      return null;
+    }
+
+    // add query template
+    const query_hash = sha1(params.query);
+    const query = new MariaDBQueryTemplate<query_args_g, result_row_g>({
+      query: params.query,
+      sha1: query_hash,
+      db: params.db,
+      pool: pool
+    });
+
+    // set the query within our dual store
+    pool.query_templates.set(query_hash, query, [params.name]);
+
+    // gather the query by hash
+    return pool.query_templates.getByHash(query_hash) as MariaDBQueryTemplate<
+      query_args_g,
+      result_row_g
+    >;
+
+    */
+  }
 
   // Add a query to the query store, pre-validating it against our
   // parsed schema.  The validation isn't perfect, but it's pretty good

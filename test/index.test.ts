@@ -46,7 +46,6 @@ import type { ResultSetHeader } from 'mysql2';
     host: '127.0.0.1',
     user: 'your_mariadb_user',
     password: 'your_mariadb_password!',
-    // database: 'ptusa_v2',
     debug: false,
     insecureAuth: true
   };
@@ -58,7 +57,6 @@ import type { ResultSetHeader } from 'mysql2';
     host: '127.0.0.1',
     user: 'your_mariadb_user',
     password: 'your_mariadb_password!',
-    // database: 'ptusa_v2',
     debug: false,
     insecureAuth: true
   };
@@ -159,6 +157,28 @@ import type { ResultSetHeader } from 'mysql2';
         pool_options: mariadb_pool_config_1
       });
 
+      const stacked_insert = await mariadb_client.addStackedInsertQuery<
+        [string, string]
+      >({
+        pool: 'db1_pool1',
+        db: 'unit_test_db_1000',
+        name: 'testInsertQuery',
+        query_insert_and_columns: `INSERT INTO unit_test_db_1000.new_table  ( column_1, column_2 )`,
+        expected_value_set_count: 2
+      });
+
+      const stacked_insert_result = await stacked_insert?.execute({
+        args_array: [
+          ['hello1', 'hello2'],
+          ['hello3', 'hello4'],
+          ['hello5', 'hello6']
+        ]
+      });
+      /*
+      INSERT INTO unit_test_db_1000.new_table ( column_1, column_2 ) VALUES ( 'blah1', 'blah2' ), ( 'blah3', 'blah4' ), ( 'blah5', 'blah6' )
+      */
+
+      debugger;
       const query_template = await mariadb_client.addQuery<
         [string, string],
         ResultSetHeader
@@ -177,13 +197,6 @@ import type { ResultSetHeader } from 'mysql2';
           ?,
           ?
         )`
-      });
-
-      await mariadb_client.addQuery({
-        pool: 'db1_pool1',
-        db: 'unit_test_db_1000',
-        name: 'testQuery',
-        query: 'SELECT id FROM unit_test_db_1000.new_table'
       });
 
       const query_template2 = await mariadb_client.addQuery({
