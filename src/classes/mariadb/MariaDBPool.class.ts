@@ -10,6 +10,8 @@ import type { MariaDBSQLQueryValidator } from './MariaDBSQLQueryValidator.class'
 import { DualIndexStore } from '../dualstore/DualIndexStore.class';
 import type { MariaDBQueryTemplate } from './MariaDBQueryTemplate.class';
 import type { MariaDBStackedQueryTemplate } from './MariaDBStackedQueryTemplate.class';
+import type { MariaDBBufferedStackedQueryTemplate } from './MariaDBBufferedStackedQueryTemplate.class';
+
 import type { schema_snapshot_t } from './MariaDBDatabaseSchemaIntrospector.class';
 
 export class MariaDBPool {
@@ -28,6 +30,12 @@ export class MariaDBPool {
   stacked_query_templates: DualIndexStore<
     MariaDBStackedQueryTemplate<unknown, unknown>
   > = new DualIndexStore<MariaDBStackedQueryTemplate<unknown, unknown>>();
+
+  buffered_stacked_query_templates: DualIndexStore<
+    MariaDBBufferedStackedQueryTemplate<unknown, unknown>
+  > = new DualIndexStore<
+    MariaDBBufferedStackedQueryTemplate<unknown, unknown>
+  >();
 
   constructor(params: {
     name: string;

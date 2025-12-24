@@ -103,8 +103,10 @@ import { MariaDBError } from './MariaDBError.class';
 import { MariaDBDatabaseSchemaIntrospector } from './MariaDBDatabaseSchemaIntrospector.class';
 import { MariaDBSQLQueryValidator } from './MariaDBSQLQueryValidator.class';
 import { MariaDBPool } from './MariaDBPool.class';
+// query templates
 import { MariaDBQueryTemplate } from './MariaDBQueryTemplate.class';
 import { MariaDBStackedQueryTemplate } from './MariaDBStackedQueryTemplate.class';
+import { MariaDBBufferedStackedQueryTemplate } from './MariaDBBufferedStackedQueryTemplate.class';
 
 import crypto from 'crypto';
 
@@ -354,6 +356,85 @@ export class MariaDB {
     >;
 
     */
+  }
+
+  async addBufferedStackedInsertQuery<query_args_g>(params: {
+    pool: string;
+    db: string;
+    name: string;
+    // eg: INSERT INTO table_name (col_name1, col_name2, col_name3)
+    query_insert_and_columns: string;
+    // trailing clause: eg ON DUPLICATE KEY UPDATE b = VALUES(b);
+    trailing_clause?: string;
+    // eg: The number of (?, ?, ?), which would be 3 here.
+    expected_value_set_count: number;
+    // for buffering, this is the timeout which will be waited when a
+    // record is added to the buffered array, before executing the stacked
+    // query.  This is only relevant when records are present in the buffered
+    // array which have become lingering.
+    max_timeout_for_insert_when_no_new_records_ms: number;
+    // for buffering, when this number of rows are found present in the buffered
+    // array, an insert will take place using those records.
+    max_rows_before_insert_len: number;
+  }) {
+    // MariaDBStackedQueryTemplate
+
+    const mariadb_ref = this;
+    const pool = mariadb_ref.connection_pools[params.pool];
+    if (!pool) {
+      return null;
+    }
+
+    const test_value_set = `(${Array(params.expected_value_set_count)
+      .fill('?')
+      .join(', ')})`;
+
+    let test_query = `${params.query_insert_and_columns} VALUES ${test_value_set}`;
+    if (params.trailing_clause) test_query += ' ' + params.trailing_clause;
+
+    // validation_result_t
+    const query_validation = pool.query_validator.validate(test_query);
+    if (!query_validation.ok) {
+      throw new MariaDBError({
+        msg: 'Query validation failed.',
+        code: 1001,
+        category: 'DDL',
+        type: 'QUERY_INVALID',
+        extra: query_validation
+      });
+      return null;
+    }
+
+    if (query_validation.kind !== 'insert') {
+      throw new MariaDBError({
+        msg: 'Stacked queries can only be insert queries.',
+        code: 1001,
+        category: 'DDL',
+        type: 'QUERY_INVALID',
+        extra: query_validation
+      });
+      return null;
+    }
+
+    const query_hash = sha1(test_query);
+    const query = new MariaDBBufferedStackedQueryTemplate({
+      query_insert_and_columns: params.query_insert_and_columns,
+      trailing_clause: params.trailing_clause,
+      expected_value_set_count: params.expected_value_set_count,
+      interval_ms: params.max_timeout_for_insert_when_no_new_records_ms,
+      max_len: params.max_rows_before_insert_len,
+      db: params.db,
+      pool: pool,
+      sha1: query_hash
+    });
+
+    // set the query within our dual store
+    pool.buffered_stacked_query_templates.set(query_hash, query, [params.name]);
+
+    // gather the query by hash
+    return pool.buffered_stacked_query_templates.getByHash(
+      query_hash
+    ) as MariaDBBufferedStackedQueryTemplate<query_args_g, ResultSetHeader>;
   }
 
   // Add a query to the query store, pre-validating it against our

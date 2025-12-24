@@ -8,6 +8,8 @@ The intent of this code is to take code that I use for database purposes, within
 
 The design philosophy of these classes is to provide a middle layer which is not an ORM, but is also not completely just perfectly raw SQL. The goal is to provide a typed interface where queries can be defined, arguments can be typed, and results can be similarly typed. Schemeas are parsed via an introspector, queries are compared against that parsed schema, and out of date/wrong queries can be detected at application runtime. For me personally, on my projects, one of the key issues I have with RDBMS is that I constantly want to prototype new database designs but the queries often fall out of syntax with the running schema. With these classes I can preload the queries and compare them against the current schema before any of the loaded queries ever run, thus preventing likely problems. This is not a perfect solution, and I in no way claim it is, but with SQL and it's stringyness, perfect solutions are a bit computationally impractical. Our schema introspector is designed to work with SELECT, INSERT, UPDATE, and DELETE queries. It does not attempt to do any work with stored procedures or anything similar.
 
+**_IMPORTANT_**: We disallow "SELECT column as something_other_name". While that syntax may be useful, in the past for myself personally it lead to more confusing code in the long term. Since this code is written for my personal use, I've chosen to disallow renaming row columns.
+
 We provide each validated query a class instance with an execute method, which can run either in a streamed row by row callback to alleviate potential memory consumption issues, or without a callback to retrieve all rows at once.
 
 ```typescript

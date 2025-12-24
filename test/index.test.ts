@@ -157,6 +157,10 @@ import type { ResultSetHeader } from 'mysql2';
         pool_options: mariadb_pool_config_1
       });
 
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      // %%% Basic Stacked Queries %%%%%%%%%%%%%%%%%%%%%%%
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
       const stacked_insert = await mariadb_client.addStackedInsertQuery<
         [string, string]
       >({
@@ -174,11 +178,61 @@ import type { ResultSetHeader } from 'mysql2';
           ['hello5', 'hello6']
         ]
       });
-      /*
-      INSERT INTO unit_test_db_1000.new_table ( column_1, column_2 ) VALUES ( 'blah1', 'blah2' ), ( 'blah3', 'blah4' ), ( 'blah5', 'blah6' )
-      */
 
-      debugger;
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      // %%% Buffered Stacked Query %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      const buffered_stacked_insert =
+        await mariadb_client.addBufferedStackedInsertQuery<[string, string]>({
+          pool: 'db1_pool1',
+          db: 'unit_test_db_1000',
+          name: 'testInsertQuery',
+          query_insert_and_columns: `INSERT INTO unit_test_db_1000.new_table  ( column_1, column_2 )`,
+          expected_value_set_count: 2,
+          max_timeout_for_insert_when_no_new_records_ms: 1000,
+          max_rows_before_insert_len: 10
+        });
+
+      await buffered_stacked_insert?.bufferedExecute({
+        args_array: [
+          ['hello1', 'hello2'],
+          ['hello3', 'hello4'],
+          ['hello5', 'hello6']
+        ]
+      });
+
+      await buffered_stacked_insert?.bufferedExecute({
+        args_array: [
+          ['hello7', 'hello8'],
+          ['hello9', 'hello10'],
+          ['hello11', 'hello12'],
+          ['hello13', 'hello14']
+        ]
+      });
+
+      // create 100 deep array to test stacked inserts
+      const long_insert_array = new Array<[string, string]>(100).fill([
+        'hello_long',
+        'also_long'
+      ]);
+
+      await buffered_stacked_insert?.bufferedExecute({
+        args_array: long_insert_array
+      });
+
+      if (buffered_stacked_insert?.buffered_array?.getSize()) {
+        await buffered_stacked_insert?.buffered_array?.flushNow();
+      }
+
+      await buffered_stacked_insert?.bufferedExecute({
+        args_array: long_insert_array
+      });
+
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      // %%% Non-Stacked Insert %%%%%%%%%%%%%%%%%%%%%%%%%
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
       const query_template = await mariadb_client.addQuery<
         [string, string],
         ResultSetHeader
@@ -242,6 +296,27 @@ import type { ResultSetHeader } from 'mysql2';
         aggregated_results.length === 500,
         'Results length is appropriate.'
       );
+
+      let count_query = (count_query = await mariadb_client.addQuery<
+        null,
+        { 'count(id)': number }
+      >({
+        pool: 'db1_pool1',
+        db: 'unit_test_db_1000',
+        name: 'countNewTable',
+        query: `select count(id) from unit_test_db_1000.new_table`
+      }));
+
+      const count_result = await count_query?.execute();
+
+      if (count_result) {
+        if (count_result[0]) {
+          assert.ok(
+            count_result[0]['count(id)'] === 212,
+            'The new_table count was an unexpected length (should be 212)'
+          );
+        }
+      }
 
       const shutdown_ok = await mariadb_client.shutdown({
         admin_pools: true,

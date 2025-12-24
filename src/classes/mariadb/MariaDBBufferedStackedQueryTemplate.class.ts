@@ -4,7 +4,7 @@ import type { MariaDBPool } from './MariaDBPool.class';
 
 import { BufferedArray } from '../buffered_array/BufferedArray.class';
 
-export class MariaDBStackedQueryTemplate<query_args_g, result_row_g> {
+export class MariaDBBufferedStackedQueryTemplate<query_args_g, result_row_g> {
   // eg: INSERT INTO table_name (col_name1, col_name2, col_name3)
   query_insert_and_columns: string;
   // trailing clause: eg ON DUPLICATE KEY UPDATE b = VALUES(b);
@@ -14,11 +14,19 @@ export class MariaDBStackedQueryTemplate<query_args_g, result_row_g> {
   db: string;
   pool: MariaDBPool;
   sha1: string;
+  buffered_array:
+    | BufferedArray<
+        query_args_g,
+        MariaDBBufferedStackedQueryTemplate<query_args_g, result_row_g>
+      >
+    | undefined;
 
   constructor(params: {
     query_insert_and_columns: string;
     trailing_clause?: string;
     expected_value_set_count: number;
+    max_len: number;
+    interval_ms: number;
     db: string;
     pool: MariaDBPool;
     sha1: string;
@@ -29,8 +37,35 @@ export class MariaDBStackedQueryTemplate<query_args_g, result_row_g> {
     this.db = params.db;
     this.pool = params.pool;
     this.sha1 = params.sha1;
+    const query_template_ref = this;
+    this.buffered_array = new BufferedArray<
+      query_args_g,
+      MariaDBBufferedStackedQueryTemplate<query_args_g, result_row_g>
+    >({
+      config: { interval_ms: params.interval_ms, max_length: params.max_len },
+      extra: query_template_ref,
+      flush_callback: async function (params: {
+        extra: MariaDBBufferedStackedQueryTemplate<query_args_g, result_row_g>;
+        items: query_args_g[];
+      }) {
+        console.log({ flush_len: params.items.length });
+        await params.extra.execute({ args_array: params.items });
+      }
+    });
   }
 
+  async bufferedExecute(params: {
+    args_array?: Array<query_args_g>;
+  }): Promise<null | Array<result_row_g>> {
+    const query_template_ref = this;
+    if (!params.args_array) return null;
+    await query_template_ref.buffered_array?.addMany(params.args_array);
+
+    return null;
+  }
+
+  // this is the actual execute method which will be called when either the buffered stack hits
+  // it's length, or the timer expires.
   async execute(params?: {
     args_array?: Array<query_args_g>;
   }): Promise<null | Array<result_row_g>> {
