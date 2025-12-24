@@ -12,6 +12,10 @@ The design philosophy of these classes is to provide a middle layer which is not
 
 We provide each validated query a class instance with an execute method, which can run either in a streamed row by row callback to alleviate potential memory consumption issues, or without a callback to retrieve all rows at once.
 
+- Query
+- Stacked Insert Query
+- Buffered Stacked Insert Query
+
 ```typescript
 // Example: Using an Admin Pool to Create/Drop a database.
 
