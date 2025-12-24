@@ -297,7 +297,7 @@ import type { ResultSetHeader } from 'mysql2';
         'Results length is appropriate.'
       );
 
-      let count_query = (count_query = await mariadb_client.addQuery<
+      const count_query = await mariadb_client.addQuery<
         null,
         { 'count(id)': number }
       >({
@@ -305,7 +305,7 @@ import type { ResultSetHeader } from 'mysql2';
         db: 'unit_test_db_1000',
         name: 'countNewTable',
         query: `select count(id) from unit_test_db_1000.new_table`
-      }));
+      });
 
       const count_result = await count_query?.execute();
 
