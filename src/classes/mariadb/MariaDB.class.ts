@@ -258,6 +258,7 @@ export class MariaDB {
     trailing_clause?: string;
     // eg: The number of (?, ?, ?), which would be 3 here.
     expected_value_set_count: number;
+    skip_validator?: boolean;
   }) {
     // MariaDBStackedQueryTemplate
 
@@ -275,27 +276,29 @@ export class MariaDB {
     if (params.trailing_clause) test_query += ' ' + params.trailing_clause;
 
     // validation_result_t
-    const query_validation = pool.query_validator.validate(test_query);
-    if (!query_validation.ok) {
-      throw new MariaDBError({
-        msg: 'Query validation failed.',
-        code: 1001,
-        category: 'DDL',
-        type: 'QUERY_INVALID',
-        extra: query_validation
-      });
-      return null;
-    }
+    if (!params.skip_validator) {
+      const query_validation = pool.query_validator.validate(test_query);
+      if (!query_validation.ok) {
+        throw new MariaDBError({
+          msg: 'Query validation failed.',
+          code: 1001,
+          category: 'DDL',
+          type: 'QUERY_INVALID',
+          extra: query_validation
+        });
+        return null;
+      }
 
-    if (query_validation.kind !== 'insert') {
-      throw new MariaDBError({
-        msg: 'Stacked queries can only be insert queries.',
-        code: 1001,
-        category: 'DDL',
-        type: 'QUERY_INVALID',
-        extra: query_validation
-      });
-      return null;
+      if (query_validation.kind !== 'insert') {
+        throw new MariaDBError({
+          msg: 'Stacked queries can only be insert queries.',
+          code: 1001,
+          category: 'DDL',
+          type: 'QUERY_INVALID',
+          extra: query_validation
+        });
+        return null;
+      }
     }
 
     // new MariaDBStackedQueryTemplate()
@@ -376,6 +379,7 @@ export class MariaDB {
     // for buffering, when this number of rows are found present in the buffered
     // array, an insert will take place using those records.
     max_rows_before_insert_len: number;
+    skip_validator?: boolean;
   }) {
     // MariaDBStackedQueryTemplate
 
@@ -392,28 +396,30 @@ export class MariaDB {
     let test_query = `${params.query_insert_and_columns} VALUES ${test_value_set}`;
     if (params.trailing_clause) test_query += ' ' + params.trailing_clause;
 
-    // validation_result_t
-    const query_validation = pool.query_validator.validate(test_query);
-    if (!query_validation.ok) {
-      throw new MariaDBError({
-        msg: 'Query validation failed.',
-        code: 1001,
-        category: 'DDL',
-        type: 'QUERY_INVALID',
-        extra: query_validation
-      });
-      return null;
-    }
+    if (!params.skip_validator) {
+      // validation_result_t
+      const query_validation = pool.query_validator.validate(test_query);
+      if (!query_validation.ok) {
+        throw new MariaDBError({
+          msg: 'Query validation failed.',
+          code: 1001,
+          category: 'DDL',
+          type: 'QUERY_INVALID',
+          extra: query_validation
+        });
+        return null;
+      }
 
-    if (query_validation.kind !== 'insert') {
-      throw new MariaDBError({
-        msg: 'Stacked queries can only be insert queries.',
-        code: 1001,
-        category: 'DDL',
-        type: 'QUERY_INVALID',
-        extra: query_validation
-      });
-      return null;
+      if (query_validation.kind !== 'insert') {
+        throw new MariaDBError({
+          msg: 'Stacked queries can only be insert queries.',
+          code: 1001,
+          category: 'DDL',
+          type: 'QUERY_INVALID',
+          extra: query_validation
+        });
+        return null;
+      }
     }
 
     const query_hash = sha1(test_query);
@@ -445,6 +451,7 @@ export class MariaDB {
     db: string;
     name: string;
     query: string;
+    skip_validator?: boolean;
   }) {
     const mariadb_ref = this;
     const pool = mariadb_ref.connection_pools[params.pool];
@@ -457,17 +464,18 @@ export class MariaDB {
     if (typeof params.query !== 'string') return null;
     if (params.query.length <= 0) return null;
 
-    // validation_result_t
-    const query_validation = pool.query_validator.validate(params.query);
-    if (!query_validation.ok) {
-      throw new MariaDBError({
-        msg: 'Query validation failed.',
-        code: 1001,
-        category: 'DDL',
-        type: 'QUERY_INVALID',
-        extra: query_validation
-      });
-      return null;
+    if (!params.skip_validator) {
+      const query_validation = pool.query_validator.validate(params.query);
+      if (!query_validation.ok) {
+        throw new MariaDBError({
+          msg: 'Query validation failed.',
+          code: 1001,
+          category: 'DDL',
+          type: 'QUERY_INVALID',
+          extra: query_validation
+        });
+        return null;
+      }
     }
 
     // add query template

@@ -1,5 +1,3 @@
-import type mysql from 'mysql2';
-import type { PoolConnection } from 'mysql2';
 import type { MariaDBPool } from './MariaDBPool.class';
 
 import { BufferedArray } from '../buffered_array/BufferedArray.class';
@@ -20,6 +18,13 @@ export class MariaDBBufferedStackedQueryTemplate<query_args_g, result_row_g> {
         MariaDBBufferedStackedQueryTemplate<query_args_g, result_row_g>
       >
     | undefined;
+  flush_info: {
+    total_flushed_cnt: number;
+    last_flushed_cnt: number;
+  } = {
+    total_flushed_cnt: 0,
+    last_flushed_cnt: 0
+  };
 
   constructor(params: {
     query_insert_and_columns: string;
@@ -48,8 +53,10 @@ export class MariaDBBufferedStackedQueryTemplate<query_args_g, result_row_g> {
         extra: MariaDBBufferedStackedQueryTemplate<query_args_g, result_row_g>;
         items: query_args_g[];
       }) {
-        console.log({ flush_len: params.items.length });
+        // console.log({ flush_len: params.items.length });
         await params.extra.execute({ args_array: params.items });
+        params.extra.flush_info.last_flushed_cnt = params.items.length;
+        params.extra.flush_info.total_flushed_cnt += params.items.length;
       }
     });
   }
