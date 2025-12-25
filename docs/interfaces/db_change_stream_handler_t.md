@@ -6,7 +6,7 @@
 
 # Interface: db\_change\_stream\_handler\_t\<TDoc\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:50](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L50)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:50](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L50)
 
 ## Type Parameters
 
@@ -20,7 +20,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:50](https://github.com/opsimat
 
 > **change\_stream**: `ChangeStream`\<`Document`, `ChangeStreamDocument`\<`Document`\>\> \| `undefined`
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:53](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L53)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:53](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L53)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:53](https://github.com/opsimat
 
 > **db**: `string` \| `undefined`
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:52](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L52)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:52](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L52)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:52](https://github.com/opsimat
 
 > **mongodb\_ref**: [`MongoDB`](../classes/MongoDB.md) \| `undefined`
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:51](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L51)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:51](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L51)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:51](https://github.com/opsimat
 
 > **onChange**: (`change`) => `void` \| `Promise`\<`void`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:57](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L57)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:57](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L57)
 
 #### Parameters
 

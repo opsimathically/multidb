@@ -6,7 +6,10 @@
 
 ## Classes
 
+- [BufferedArray](classes/BufferedArray.md)
+- [DualIndexStore](classes/DualIndexStore.md)
 - [MariaDB](classes/MariaDB.md)
+- [MariaDBBufferedStackedQueryTemplate](classes/MariaDBBufferedStackedQueryTemplate.md)
 - [MariaDBDatabaseSchemaIntrospector](classes/MariaDBDatabaseSchemaIntrospector.md)
 - [MariaDBDumpExporter](classes/MariaDBDumpExporter.md)
 - [MariaDBDumpImporter](classes/MariaDBDumpImporter.md)
@@ -14,6 +17,7 @@
 - [MariaDBPool](classes/MariaDBPool.md)
 - [MariaDBQueryTemplate](classes/MariaDBQueryTemplate.md)
 - [MariaDBSQLQueryValidator](classes/MariaDBSQLQueryValidator.md)
+- [MariaDBStackedQueryTemplate](classes/MariaDBStackedQueryTemplate.md)
 - [MongoDB](classes/MongoDB.md)
 - [SQLDMLParser](classes/SQLDMLParser.md)
 - [SQLTokenizer](classes/SQLTokenizer.md)
@@ -28,6 +32,7 @@
 
 - [check\_constraint\_schema\_t](type-aliases/check_constraint_schema_t.md)
 - [column\_schema\_t](type-aliases/column_schema_t.md)
+- [file\_data\_t](type-aliases/file_data_t.md)
 - [foreign\_key\_schema\_t](type-aliases/foreign_key_schema_t.md)
 - [index\_column\_schema\_t](type-aliases/index_column_schema_t.md)
 - [index\_schema\_t](type-aliases/index_schema_t.md)
@@ -46,6 +51,7 @@
 - [mariadb\_selection\_query\_t](type-aliases/mariadb_selection_query_t.md)
 - [mariadb\_table\_collumn\_definition\_t](type-aliases/mariadb_table_collumn_definition_t.md)
 - [mariadb\_table\_definition\_t](type-aliases/mariadb_table_definition_t.md)
+- [mongodb\_databases\_t](type-aliases/mongodb_databases_t.md)
 - [mysql\_import\_result\_t](type-aliases/mysql_import_result_t.md)
 - [mysql\_importer\_options\_t](type-aliases/mysql_importer_options_t.md)
 - [primary\_key\_schema\_t](type-aliases/primary_key_schema_t.md)

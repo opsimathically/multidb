@@ -6,7 +6,7 @@
 
 # Class: MariaDBQueryTemplate\<query_args_g, result_row_g\>
 
-Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:5](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBQueryTemplate.class.ts#L5)
+Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:5](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBQueryTemplate.class.ts#L5)
 
 ## Type Parameters
 
@@ -24,7 +24,7 @@ Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:5](https://github
 
 > **new MariaDBQueryTemplate**\<`query_args_g`, `result_row_g`\>(`params`): `MariaDBQueryTemplate`\<`query_args_g`, `result_row_g`\>
 
-Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:10](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBQueryTemplate.class.ts#L10)
+Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:10](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBQueryTemplate.class.ts#L10)
 
 #### Parameters
 
@@ -56,7 +56,7 @@ Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:10](https://githu
 
 > **db**: `string`
 
-Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:7](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBQueryTemplate.class.ts#L7)
+Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:7](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBQueryTemplate.class.ts#L7)
 
 ***
 
@@ -64,7 +64,7 @@ Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:7](https://github
 
 > **pool**: [`MariaDBPool`](MariaDBPool.md)
 
-Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:8](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBQueryTemplate.class.ts#L8)
+Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:8](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBQueryTemplate.class.ts#L8)
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:8](https://github
 
 > **query**: `string`
 
-Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:6](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBQueryTemplate.class.ts#L6)
+Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:6](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBQueryTemplate.class.ts#L6)
 
 ***
 
@@ -80,7 +80,7 @@ Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:6](https://github
 
 > **sha1**: `string`
 
-Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:9](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBQueryTemplate.class.ts#L9)
+Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:9](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBQueryTemplate.class.ts#L9)
 
 ## Methods
 
@@ -88,7 +88,7 @@ Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:9](https://github
 
 > **execute**(`params?`): `Promise`\<`result_row_g`[] \| `null`\>
 
-Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:22](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBQueryTemplate.class.ts#L22)
+Defined in: [src/classes/mariadb/MariaDBQueryTemplate.class.ts:22](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBQueryTemplate.class.ts#L22)
 
 #### Parameters
 

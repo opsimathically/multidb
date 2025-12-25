@@ -6,7 +6,7 @@
 
 # Class: MongoDB
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:70](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L70)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:70](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L70)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:70](https://github.com/opsimat
 
 > **new MongoDB**(): `MongoDB`
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:73](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L73)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:73](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L73)
 
 #### Returns
 
@@ -26,7 +26,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:73](https://github.com/opsimat
 
 > **known\_indexes**: `Record`\<`string`, `boolean`\> = `{}`
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:72](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L72)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:72](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L72)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:72](https://github.com/opsimat
 
 > **MongoClient**: `MongoClient` \| `null` = `null`
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:71](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L71)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:71](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L71)
 
 ## Methods
 
@@ -42,7 +42,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:71](https://github.com/opsimat
 
 > **aggregateCollection**(`params`): `Promise`\<`boolean` \| `Document`[]\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:503](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L503)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:503](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L503)
 
 #### Parameters
 
@@ -78,7 +78,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:503](https://github.com/opsima
 
 > **aggregateDB**(`params`): `Promise`\<`boolean` \| `Document`[]\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:562](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L562)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:562](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L562)
 
 #### Parameters
 
@@ -110,7 +110,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:562](https://github.com/opsima
 
 > **collectionExists**(`db_name`, `collection_name`): `Promise`\<`boolean` \| `null`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:201](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L201)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:201](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L201)
 
 #### Parameters
 
@@ -132,7 +132,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:201](https://github.com/opsima
 
 > **connect**(`params`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:76](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L76)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:76](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L76)
 
 #### Parameters
 
@@ -184,7 +184,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:76](https://github.com/opsimat
 
 > **countDocuments**(`params`): `Promise`\<`number`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:448](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L448)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:448](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L448)
 
 #### Parameters
 
@@ -216,7 +216,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:448](https://github.com/opsima
 
 > **createCollection**(`params`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:405](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L405)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:405](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L405)
 
 #### Parameters
 
@@ -240,7 +240,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:405](https://github.com/opsima
 
 > **createDatabase**(`params`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:361](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L361)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:361](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L361)
 
 #### Parameters
 
@@ -272,7 +272,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:361](https://github.com/opsima
 
 > **createIndexOnCollection**(`params`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:225](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L225)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:225](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L225)
 
 #### Parameters
 
@@ -308,7 +308,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:225](https://github.com/opsima
 
 > **databaseExists**(`db_name`): `Promise`\<`boolean` \| `null`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:186](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L186)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:186](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L186)
 
 #### Parameters
 
@@ -326,7 +326,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:186](https://github.com/opsima
 
 > **deleteCollection**(`params`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:429](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L429)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:429](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L429)
 
 #### Parameters
 
@@ -350,7 +350,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:429](https://github.com/opsima
 
 > **deleteDatabase**(`db_name`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:386](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L386)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:386](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L386)
 
 #### Parameters
 
@@ -368,7 +368,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:386](https://github.com/opsima
 
 > **deleteIndexFromCollection**(`params`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:282](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L282)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:282](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L282)
 
 #### Parameters
 
@@ -396,7 +396,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:282](https://github.com/opsima
 
 > **deleteRecords**(`params`): `Promise`\<`DeleteResult` \| `null`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:914](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L914)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:914](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L914)
 
 #### Parameters
 
@@ -424,7 +424,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:914](https://github.com/opsima
 
 > **deleteSingleRecord**(`params`): `Promise`\<`DeleteResult` \| `null`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:892](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L892)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:892](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L892)
 
 #### Parameters
 
@@ -452,7 +452,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:892](https://github.com/opsima
 
 > **disconnect**(): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:131](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L131)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:131](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L131)
 
 #### Returns
 
@@ -464,7 +464,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:131](https://github.com/opsima
 
 > **distinctValues**(`params`): `Promise`\<`any`[] \| `null`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:864](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L864)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:864](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L864)
 
 #### Parameters
 
@@ -500,7 +500,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:864](https://github.com/opsima
 
 > **estimatedDocumentCount**(`params`): `Promise`\<`number`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:471](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L471)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:471](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L471)
 
 #### Parameters
 
@@ -528,7 +528,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:471](https://github.com/opsima
 
 > **findRecords**(`params`): `Promise`\<`WithId`\<`Document`\>[] \| `null`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:807](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L807)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:807](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L807)
 
 #### Parameters
 
@@ -564,7 +564,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:807](https://github.com/opsima
 
 > **findSingleRecord**(`params`): `Promise`\<`WithId`\<`Document`\> \| `null`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:784](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L784)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:784](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L784)
 
 #### Parameters
 
@@ -590,13 +590,13 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:784](https://github.com/opsima
 
 ### gatherDatabasesAndCollections()
 
-> **gatherDatabasesAndCollections**(): `Promise`\<`mongodb_databases_t` \| `null`\>
+> **gatherDatabasesAndCollections**(): `Promise`\<[`mongodb_databases_t`](../type-aliases/mongodb_databases_t.md) \| `null`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:152](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L152)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:152](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L152)
 
 #### Returns
 
-`Promise`\<`mongodb_databases_t` \| `null`\>
+`Promise`\<[`mongodb_databases_t`](../type-aliases/mongodb_databases_t.md) \| `null`\>
 
 ***
 
@@ -604,7 +604,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:152](https://github.com/opsima
 
 > **GFS\_createBucket**(`params`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:1047](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L1047)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:1047](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L1047)
 
 #### Parameters
 
@@ -628,7 +628,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:1047](https://github.com/opsim
 
 > **GFS\_deleteBucket**(`params`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:1092](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L1092)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:1092](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L1092)
 
 #### Parameters
 
@@ -652,7 +652,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:1092](https://github.com/opsim
 
 > **GFS\_deleteFiles**(`params`): `Promise`\<`number`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:1319](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L1319)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:1319](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L1319)
 
 #### Parameters
 
@@ -680,7 +680,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:1319](https://github.com/opsim
 
 > **GFS\_deleteSingleFile**(`params`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:1284](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L1284)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:1284](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L1284)
 
 #### Parameters
 
@@ -706,9 +706,9 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:1284](https://github.com/opsim
 
 ### GFS\_findFiles()
 
-> **GFS\_findFiles**(`params`): `Promise`\<`file_data_t`[] \| `null`\>
+> **GFS\_findFiles**(`params`): `Promise`\<[`file_data_t`](../type-aliases/file_data_t.md)[] \| `null`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:1188](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L1188)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:1188](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L1188)
 
 #### Parameters
 
@@ -732,15 +732,15 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:1188](https://github.com/opsim
 
 #### Returns
 
-`Promise`\<`file_data_t`[] \| `null`\>
+`Promise`\<[`file_data_t`](../type-aliases/file_data_t.md)[] \| `null`\>
 
 ***
 
 ### GFS\_findSingleFileGFS()
 
-> **GFS\_findSingleFileGFS**(`params`): `Promise`\<`file_data_t`\>
+> **GFS\_findSingleFileGFS**(`params`): `Promise`\<[`file_data_t`](../type-aliases/file_data_t.md)\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:1114](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L1114)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:1114](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L1114)
 
 #### Parameters
 
@@ -764,7 +764,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:1114](https://github.com/opsim
 
 #### Returns
 
-`Promise`\<`file_data_t`\>
+`Promise`\<[`file_data_t`](../type-aliases/file_data_t.md)\>
 
 ***
 
@@ -772,7 +772,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:1114](https://github.com/opsim
 
 > **GFS\_storeFileFromBuffer**(`params`): `Promise`\<`ObjectId` \| `null`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:1353](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L1353)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:1353](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L1353)
 
 #### Parameters
 
@@ -808,7 +808,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:1353](https://github.com/opsim
 
 > **GFS\_storeFileFromStream**(`params`): `Promise`\<`ObjectId` \| `null`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:1415](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L1415)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:1415](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L1415)
 
 #### Parameters
 
@@ -844,7 +844,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:1415](https://github.com/opsim
 
 > **GFS\_updateFilesMetadata**(`params`): `Promise`\<`UpdateResult`\<`Document`\> \| `null`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:1500](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L1500)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:1500](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L1500)
 
 #### Parameters
 
@@ -876,7 +876,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:1500](https://github.com/opsim
 
 > **GFS\_updateSingleFileMetadata**(`params`): `Promise`\<`UpdateResult`\<`Document`\> \| `null`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:1476](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L1476)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:1476](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L1476)
 
 #### Parameters
 
@@ -908,7 +908,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:1476](https://github.com/opsim
 
 > **indexAlreadyExists**(`params`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:313](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L313)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:313](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L313)
 
 #### Parameters
 
@@ -936,7 +936,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:313](https://github.com/opsima
 
 > **insertRecords**(`params`): `Promise`\<`InsertManyResult`\<`Document`\> \| `null`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:705](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L705)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:705](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L705)
 
 #### Parameters
 
@@ -968,7 +968,7 @@ readonly `OptionalId`\<`Document`\>[]
 
 > **insertSingleRecord**(`params`): `Promise`\<`InsertOneResult`\<`Document`\> \| `null`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:682](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L682)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:682](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L682)
 
 #### Parameters
 
@@ -1000,7 +1000,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:682](https://github.com/opsima
 
 > **randomSampleFromCollection**(`params`): `Promise`\<`Document`[] \| `null`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:620](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L620)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:620](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L620)
 
 #### Parameters
 
@@ -1032,7 +1032,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:620](https://github.com/opsima
 
 > **subscribeToCollectionChangeStream**(`params`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:987](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L987)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:987](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L987)
 
 #### Parameters
 
@@ -1060,7 +1060,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:987](https://github.com/opsima
 
 > **subscribeToDatabaseChangeStream**(`params`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:951](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L951)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:951](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L951)
 
 #### Parameters
 
@@ -1084,7 +1084,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:951](https://github.com/opsima
 
 > **updateRecords**(`params`): `Promise`\<`UpdateResult`\<`Document`\> \| `null`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:756](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L756)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:756](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L756)
 
 #### Parameters
 
@@ -1120,7 +1120,7 @@ Defined in: [src/classes/mongodb/MongoDB.class.ts:756](https://github.com/opsima
 
 > **updateSingleRecord**(`params`): `Promise`\<`UpdateResult`\<`Document`\> \| `null`\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:728](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mongodb/MongoDB.class.ts#L728)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:728](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L728)
 
 #### Parameters
 

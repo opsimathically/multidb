@@ -6,7 +6,7 @@
 
 # Class: MariaDBDatabaseSchemaIntrospector
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:217](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L217)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:217](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L217)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:217]
 
 > **new MariaDBDatabaseSchemaIntrospector**(`pool_or_options`, `opts?`): `MariaDBDatabaseSchemaIntrospector`
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:222](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L222)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:222](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L222)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:222]
 
 > **assert\_column\_exists**(`table_name`, `column_name`): `void`
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:533](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L533)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:533](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L533)
 
 #### Parameters
 
@@ -58,7 +58,7 @@ Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:533]
 
 > **assert\_table\_exists**(`table_name`): `void`
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:524](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L524)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:524](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L524)
 
 #### Parameters
 
@@ -76,7 +76,7 @@ Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:524]
 
 > **close**(): `Promise`\<`void`\>
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:262](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L262)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:262](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L262)
 
 #### Returns
 
@@ -88,7 +88,7 @@ Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:262]
 
 > **get\_snapshot**(): [`schema_snapshot_t`](../type-aliases/schema_snapshot_t.md) \| `null`
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:237](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L237)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:237](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L237)
 
 #### Returns
 
@@ -100,7 +100,7 @@ Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:237]
 
 > **get\_table**(`table_name`): [`table_schema_t`](../type-aliases/table_schema_t.md) \| `null`
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:250](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L250)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:250](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L250)
 
 #### Parameters
 
@@ -118,7 +118,7 @@ Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:250]
 
 > **get\_table\_or\_throw**(`table_name`): [`table_schema_t`](../type-aliases/table_schema_t.md)
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:543](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L543)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:543](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L543)
 
 #### Parameters
 
@@ -136,7 +136,7 @@ Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:543]
 
 > **get\_view**(`view_name`): [`view_schema_t`](../type-aliases/view_schema_t.md) \| `null`
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:256](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L256)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:256](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L256)
 
 #### Parameters
 
@@ -154,7 +154,7 @@ Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:256]
 
 > **load\_database\_schema**(`database`): `Promise`\<[`schema_snapshot_t`](../type-aliases/schema_snapshot_t.md)\>
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:266](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L266)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:266](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L266)
 
 #### Parameters
 
@@ -172,7 +172,7 @@ Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:266]
 
 > **refresh**(): `Promise`\<[`schema_snapshot_t`](../type-aliases/schema_snapshot_t.md)\>
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:519](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L519)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:519](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L519)
 
 #### Returns
 
@@ -184,7 +184,7 @@ Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:519]
 
 > **require\_snapshot**(): [`schema_snapshot_t`](../type-aliases/schema_snapshot_t.md)
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:241](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L241)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:241](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L241)
 
 #### Returns
 

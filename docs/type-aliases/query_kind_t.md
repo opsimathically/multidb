@@ -8,4 +8,4 @@
 
 > **query\_kind\_t** = `"select"` \| `"insert"` \| `"update"` \| `"delete"` \| `"unknown"`
 
-Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:49](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L49)
+Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:49](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L49)

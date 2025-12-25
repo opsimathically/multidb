@@ -1,5 +1,7 @@
 // mongodb
 import type {
+  file_data_t,
+  mongodb_databases_t,
   coll_change_stream_handler_t,
   db_change_stream_handler_t
 } from './classes/mongodb/MongoDB.class';
@@ -18,6 +20,11 @@ import type { mariadb_catlayer_t } from './classes/mariadb/MariaDBError.class';
 import { MariaDBError } from './classes/mariadb/MariaDBError.class';
 
 import { MariaDBQueryTemplate } from './classes/mariadb/MariaDBQueryTemplate.class';
+import { MariaDBStackedQueryTemplate } from './classes/mariadb/MariaDBStackedQueryTemplate.class';
+import { MariaDBBufferedStackedQueryTemplate } from './classes/mariadb/MariaDBBufferedStackedQueryTemplate.class';
+
+import { BufferedArray } from './classes/buffered_array/BufferedArray.class';
+import { DualIndexStore } from './classes/dualstore/DualIndexStore.class';
 
 import { MariaDBPool } from './classes/mariadb/MariaDBPool.class';
 
@@ -77,6 +84,8 @@ export type {
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% MongoDB %%%%%%%%%%%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  mongodb_databases_t,
+  file_data_t,
   coll_change_stream_handler_t,
   db_change_stream_handler_t,
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -138,6 +147,11 @@ export type {
 // export data
 export {
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% Data Structures %%%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  BufferedArray,
+  DualIndexStore,
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% MongoDB %%%%%%%%%%%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   MongoDB,
@@ -153,9 +167,11 @@ export {
   MariaDB,
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // %%% MariaDBQueryTemplate %%%%%%%%%%%%%%%%%%%%
+  // %%% MariaDBQueryTemplates %%%%%%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   MariaDBQueryTemplate,
+  MariaDBStackedQueryTemplate,
+  MariaDBBufferedStackedQueryTemplate,
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% MariaDBPool %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
