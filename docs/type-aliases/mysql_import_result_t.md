@@ -8,7 +8,7 @@
 
 > **mysql\_import\_result\_t** = `object`
 
-Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:55](https://github.com/opsimathically/multidb/blob/8700cbe01071e0f07ae4d5e8d6a9f8c3182de939/src/classes/mariadb/MariaDBDumpImporter.class.ts#L55)
+Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:50](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBDumpImporter.class.ts#L50)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:55](https://github
 
 > **exit\_code**: `number`
 
-Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:56](https://github.com/opsimathically/multidb/blob/8700cbe01071e0f07ae4d5e8d6a9f8c3182de939/src/classes/mariadb/MariaDBDumpImporter.class.ts#L56)
+Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:51](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBDumpImporter.class.ts#L51)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:56](https://github
 
 > **stderr**: `string`
 
-Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:58](https://github.com/opsimathically/multidb/blob/8700cbe01071e0f07ae4d5e8d6a9f8c3182de939/src/classes/mariadb/MariaDBDumpImporter.class.ts#L58)
+Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:53](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBDumpImporter.class.ts#L53)
 
 ***
 
@@ -32,4 +32,4 @@ Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:58](https://github
 
 > **stdout**: `string`
 
-Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:57](https://github.com/opsimathically/multidb/blob/8700cbe01071e0f07ae4d5e8d6a9f8c3182de939/src/classes/mariadb/MariaDBDumpImporter.class.ts#L57)
+Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:52](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBDumpImporter.class.ts#L52)

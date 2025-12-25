@@ -8,6 +8,7 @@
 
 - [MariaDB](classes/MariaDB.md)
 - [MariaDBDatabaseSchemaIntrospector](classes/MariaDBDatabaseSchemaIntrospector.md)
+- [MariaDBDumpExporter](classes/MariaDBDumpExporter.md)
 - [MariaDBDumpImporter](classes/MariaDBDumpImporter.md)
 - [MariaDBError](classes/MariaDBError.md)
 - [MariaDBPool](classes/MariaDBPool.md)
@@ -21,6 +22,7 @@
 
 - [coll\_change\_stream\_handler\_t](interfaces/coll_change_stream_handler_t.md)
 - [db\_change\_stream\_handler\_t](interfaces/db_change_stream_handler_t.md)
+- [mariadb\_dump\_exporter\_config\_i](interfaces/mariadb_dump_exporter_config_i.md)
 
 ## Type Aliases
 
@@ -39,6 +41,7 @@
 - [information\_schema\_views\_row\_t](type-aliases/information_schema_views_row_t.md)
 - [introspector\_options\_t](type-aliases/introspector_options_t.md)
 - [mariadb\_catlayer\_t](type-aliases/mariadb_catlayer_t.md)
+- [mariadb\_dump\_export\_result\_t](type-aliases/mariadb_dump_export_result_t.md)
 - [mariadb\_query\_data\_t](type-aliases/mariadb_query_data_t.md)
 - [mariadb\_selection\_query\_t](type-aliases/mariadb_selection_query_t.md)
 - [mariadb\_table\_collumn\_definition\_t](type-aliases/mariadb_table_collumn_definition_t.md)

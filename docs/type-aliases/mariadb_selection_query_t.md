@@ -8,7 +8,7 @@
 
 > **mariadb\_selection\_query\_t** = `object`
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:115](https://github.com/opsimathically/multidb/blob/8700cbe01071e0f07ae4d5e8d6a9f8c3182de939/src/classes/mariadb/MariaDB.class.ts#L115)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:125](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDB.class.ts#L125)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:115](https://github.com/opsima
 
 > **parameters**: (`string` \| `number` \| `null`)[]
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:117](https://github.com/opsimathically/multidb/blob/8700cbe01071e0f07ae4d5e8d6a9f8c3182de939/src/classes/mariadb/MariaDB.class.ts#L117)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:127](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDB.class.ts#L127)
 
 ***
 
@@ -24,4 +24,4 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:117](https://github.com/opsima
 
 > **query**: `string`
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:116](https://github.com/opsimathically/multidb/blob/8700cbe01071e0f07ae4d5e8d6a9f8c3182de939/src/classes/mariadb/MariaDB.class.ts#L116)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:126](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDB.class.ts#L126)

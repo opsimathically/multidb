@@ -8,7 +8,7 @@
 
 > **information\_schema\_statistics\_row\_t** = `RowDataPacket` & `object`
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:152](https://github.com/opsimathically/multidb/blob/8700cbe01071e0f07ae4d5e8d6a9f8c3182de939/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L152)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:152](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L152)
 
 ## Type Declaration
 

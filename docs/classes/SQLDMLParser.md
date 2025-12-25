@@ -6,7 +6,7 @@
 
 # Class: SQLDMLParser
 
-Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:485](https://github.com/opsimathically/multidb/blob/8700cbe01071e0f07ae4d5e8d6a9f8c3182de939/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L485)
+Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:485](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L485)
 
 ## Constructors
 
@@ -24,7 +24,7 @@ Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:485](https://
 
 > **parse**(`sql`): `object`
 
-Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:488](https://github.com/opsimathically/multidb/blob/8700cbe01071e0f07ae4d5e8d6a9f8c3182de939/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L488)
+Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:488](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L488)
 
 #### Parameters
 

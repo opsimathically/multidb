@@ -8,7 +8,7 @@
 
 > **validation\_result\_t** = `object`
 
-Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:84](https://github.com/opsimathically/multidb/blob/8700cbe01071e0f07ae4d5e8d6a9f8c3182de939/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L84)
+Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:84](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L84)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:84](https://g
 
 > **errors**: [`validation_error_t`](validation_error_t.md)[]
 
-Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:87](https://github.com/opsimathically/multidb/blob/8700cbe01071e0f07ae4d5e8d6a9f8c3182de939/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L87)
+Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:87](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L87)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:87](https://g
 
 > **kind**: [`query_kind_t`](query_kind_t.md)
 
-Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:86](https://github.com/opsimathically/multidb/blob/8700cbe01071e0f07ae4d5e8d6a9f8c3182de939/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L86)
+Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:86](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L86)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:86](https://g
 
 > **ok**: `boolean`
 
-Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:85](https://github.com/opsimathically/multidb/blob/8700cbe01071e0f07ae4d5e8d6a9f8c3182de939/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L85)
+Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:85](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L85)
 
 ***
 
@@ -40,4 +40,4 @@ Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:85](https://g
 
 > **warnings**: [`validation_warning_t`](validation_warning_t.md)[]
 
-Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:88](https://github.com/opsimathically/multidb/blob/8700cbe01071e0f07ae4d5e8d6a9f8c3182de939/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L88)
+Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:88](https://github.com/opsimathically/multidb/blob/091f746a3471acd4096efe66a259a434477f66b7/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L88)
