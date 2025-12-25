@@ -18,7 +18,6 @@ import type {
 } from '@src/index';
 
 import { createReadStream } from 'node:fs';
-import type { ResultSetHeader } from 'mysql2';
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // %%% Configurations %%%%%%%%%%%%%%%%%%%%%%%%%

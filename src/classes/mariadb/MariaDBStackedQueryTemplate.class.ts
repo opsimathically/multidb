@@ -1,8 +1,4 @@
-import type mysql from 'mysql2';
-import type { PoolConnection } from 'mysql2';
 import type { MariaDBPool } from './MariaDBPool.class';
-
-import { BufferedArray } from '../buffered_array/BufferedArray.class';
 
 export class MariaDBStackedQueryTemplate<query_args_g, result_row_g> {
   // eg: INSERT INTO table_name (col_name1, col_name2, col_name3)

@@ -4,6 +4,8 @@ This is not intended for use by every person, in every case. It is designed for 
 
 The intent of this code is to take code that I use for database purposes, within my own tool libraries and standardize them into a single library which can be imported and easily used for the development and integration of new tools or packages I'm developing.
 
+Despite what the volume of the code looks like, I primarily use mongodb due to it's ability to rapidly prototype data in a fast changing environment. MariaDB and RDBMs are useful to me, sometimes, but they require more effort and planning and work better for rigidly planned data structures. A significant portion of the code in this repository is MariaDB oriented code designed to make my life working with SQL easier in the case I choose to use it, which is again, rarely.
+
 ## MariaDB
 
 The design philosophy of these classes is to provide a middle layer which is not an ORM, but is also not completely just perfectly raw SQL. The goal is to provide a typed interface where queries can be defined, arguments can be typed, and results can be similarly typed. Schemeas are parsed via an introspector, queries are compared against that parsed schema, and out of date/wrong queries can be detected at application runtime. For me personally, on my projects, one of the key issues I have with RDBMS is that I constantly want to prototype new database designs but the queries often fall out of syntax with the running schema. With these classes I can preload the queries and compare them against the current schema before any of the loaded queries ever run, thus preventing likely problems. This is not a perfect solution, and I in no way claim it is, but with SQL and it's stringyness, perfect solutions are a bit computationally impractical. Our schema introspector is designed to work with SELECT, INSERT, UPDATE, and DELETE queries. It does not attempt to do any work with stored procedures or anything similar.
@@ -28,6 +30,7 @@ Our MariaDB client provides a simple way to template different query types.
 import {
   MongoDB,
   MariaDBDumpImporter,
+  MariaDBDumpExporter,
   MariaDB,
   MariaDBDatabaseSchemaIntrospector,
   MariaDBSQLQueryValidator
@@ -85,7 +88,7 @@ const mariadb_adminpool_config = {
   });
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // %%% Import Schema From File %%%%%%%%%%%%%%%%%%%%%%
+  // %%% Import Database Schema From File %%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
   const importer = new MariaDBDumpImporter({
@@ -100,9 +103,25 @@ const mariadb_adminpool_config = {
     connect_timeout_seconds: 10
   });
 
-  const result = await importer.importFile(
+  const import_db_result = await importer.importFile(
     './test/sqldumps_used_by_test/testdb.sql'
   );
+
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% Export Database Schema To File %%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  const exporter = new MariaDBDumpExporter({
+    host: '127.0.0.1',
+    port: 3306,
+    user: 'your_mariadb_user',
+    password: 'your_mariadb_password!',
+    database: 'unit_test_db_1000',
+    output_file_path: '/tmp/unit_test_db_export_test.sql',
+    extra_args: ['--single-transaction', '--quick', '--routines', '--events']
+  });
+
+  const export_db_result = await exporter.exportDatabase();
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% Standard Pools %%%%%%%%%%%%%%%%
