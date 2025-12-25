@@ -23,12 +23,31 @@ import { MariaDBQueryTemplate } from './classes/mariadb/MariaDBQueryTemplate.cla
 import { MariaDBStackedQueryTemplate } from './classes/mariadb/MariaDBStackedQueryTemplate.class';
 import { MariaDBBufferedStackedQueryTemplate } from './classes/mariadb/MariaDBBufferedStackedQueryTemplate.class';
 
+import type {
+  flush_callback_t,
+  buffered_array_config_i
+} from './classes/buffered_array/BufferedArray.class';
 import { BufferedArray } from './classes/buffered_array/BufferedArray.class';
+
 import { DualIndexStore } from './classes/dualstore/DualIndexStore.class';
 
 import { MariaDBPool } from './classes/mariadb/MariaDBPool.class';
 
 import type {
+  token_kind_t,
+  token_t,
+  token_stream_t,
+  qualified_table_name_t,
+  column_ref_t,
+  star_ref_t,
+  expr_span_t,
+  join_clause_t,
+  from_source_t,
+  select_ast_t,
+  insert_ast_t,
+  update_ast_t,
+  delete_ast_t,
+  parsed_query_ast_t,
   query_kind_t,
   validation_error_t,
   validation_warning_t,
@@ -81,6 +100,11 @@ import type {
 import { MariaDBDumpExporter } from './classes/mariadb/MariaDBDumpExporter.class';
 
 export type {
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% Data Types %%%%%%%%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  flush_callback_t,
+  buffered_array_config_i,
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% MongoDB %%%%%%%%%%%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -137,6 +161,20 @@ export type {
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% MariaDBSQLQueryValidator %%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  token_kind_t,
+  token_t,
+  token_stream_t,
+  qualified_table_name_t,
+  column_ref_t,
+  star_ref_t,
+  expr_span_t,
+  join_clause_t,
+  from_source_t,
+  select_ast_t,
+  insert_ast_t,
+  update_ast_t,
+  delete_ast_t,
+  parsed_query_ast_t,
   query_kind_t,
   validation_error_t,
   validation_warning_t,

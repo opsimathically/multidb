@@ -8,7 +8,7 @@
 
 > **mariadb\_table\_definition\_t** = `object`
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:137](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L137)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:137](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L137)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:137](https://github.com/opsima
 
 > **collumns**: [`mariadb_table_collumn_definition_t`](mariadb_table_collumn_definition_t.md)[]
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:140](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L140)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:140](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L140)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:140](https://github.com/opsima
 
 > **db**: `string`
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:138](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L138)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:138](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L138)
 
 ***
 
@@ -32,4 +32,4 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:138](https://github.com/opsima
 
 > **name**: `string`
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:139](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L139)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:139](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L139)

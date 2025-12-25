@@ -8,7 +8,7 @@
 
 > **query\_rows\_t**\<`T`\> = `Promise`\<\[`T`[], `FieldPacket`[]\]\>
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:121](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L121)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:121](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L121)
 
 ## Type Parameters
 

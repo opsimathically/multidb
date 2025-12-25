@@ -1,9 +1,9 @@
-type flush_callback_t<T, extra_t> = (params: {
+export type flush_callback_t<T, extra_t> = (params: {
   extra: extra_t;
   items: T[];
 }) => Promise<void>;
 
-interface buffered_array_config_i {
+export interface buffered_array_config_i {
   max_length: number; // threshold to trigger flush by size
   interval_ms: number; // max time to wait before flushing
 }

@@ -6,7 +6,7 @@
 
 # Class: DualIndexStore\<T\>
 
-Defined in: [src/classes/dualstore/DualIndexStore.class.ts:9](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/dualstore/DualIndexStore.class.ts#L9)
+Defined in: [src/classes/dualstore/DualIndexStore.class.ts:9](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/dualstore/DualIndexStore.class.ts#L9)
 
 ## Type Parameters
 
@@ -30,7 +30,7 @@ Defined in: [src/classes/dualstore/DualIndexStore.class.ts:9](https://github.com
 
 > **addName**(`hash`, `name`): `void`
 
-Defined in: [src/classes/dualstore/DualIndexStore.class.ts:37](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/dualstore/DualIndexStore.class.ts#L37)
+Defined in: [src/classes/dualstore/DualIndexStore.class.ts:37](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/dualstore/DualIndexStore.class.ts#L37)
 
 #### Parameters
 
@@ -52,7 +52,7 @@ Defined in: [src/classes/dualstore/DualIndexStore.class.ts:37](https://github.co
 
 > **deleteHash**(`hash`): `boolean`
 
-Defined in: [src/classes/dualstore/DualIndexStore.class.ts:71](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/dualstore/DualIndexStore.class.ts#L71)
+Defined in: [src/classes/dualstore/DualIndexStore.class.ts:71](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/dualstore/DualIndexStore.class.ts#L71)
 
 #### Parameters
 
@@ -70,7 +70,7 @@ Defined in: [src/classes/dualstore/DualIndexStore.class.ts:71](https://github.co
 
 > **deleteName**(`name`): `boolean`
 
-Defined in: [src/classes/dualstore/DualIndexStore.class.ts:57](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/dualstore/DualIndexStore.class.ts#L57)
+Defined in: [src/classes/dualstore/DualIndexStore.class.ts:57](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/dualstore/DualIndexStore.class.ts#L57)
 
 #### Parameters
 
@@ -88,7 +88,7 @@ Defined in: [src/classes/dualstore/DualIndexStore.class.ts:57](https://github.co
 
 > **getByHash**(`hash`): `T` \| `undefined`
 
-Defined in: [src/classes/dualstore/DualIndexStore.class.ts:22](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/dualstore/DualIndexStore.class.ts#L22)
+Defined in: [src/classes/dualstore/DualIndexStore.class.ts:22](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/dualstore/DualIndexStore.class.ts#L22)
 
 #### Parameters
 
@@ -106,7 +106,7 @@ Defined in: [src/classes/dualstore/DualIndexStore.class.ts:22](https://github.co
 
 > **getByName**(`name`): `T` \| `undefined`
 
-Defined in: [src/classes/dualstore/DualIndexStore.class.ts:26](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/dualstore/DualIndexStore.class.ts#L26)
+Defined in: [src/classes/dualstore/DualIndexStore.class.ts:26](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/dualstore/DualIndexStore.class.ts#L26)
 
 #### Parameters
 
@@ -124,7 +124,7 @@ Defined in: [src/classes/dualstore/DualIndexStore.class.ts:26](https://github.co
 
 > **hasHash**(`hash`): `boolean`
 
-Defined in: [src/classes/dualstore/DualIndexStore.class.ts:14](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/dualstore/DualIndexStore.class.ts#L14)
+Defined in: [src/classes/dualstore/DualIndexStore.class.ts:14](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/dualstore/DualIndexStore.class.ts#L14)
 
 #### Parameters
 
@@ -142,7 +142,7 @@ Defined in: [src/classes/dualstore/DualIndexStore.class.ts:14](https://github.co
 
 > **hasName**(`name`): `boolean`
 
-Defined in: [src/classes/dualstore/DualIndexStore.class.ts:18](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/dualstore/DualIndexStore.class.ts#L18)
+Defined in: [src/classes/dualstore/DualIndexStore.class.ts:18](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/dualstore/DualIndexStore.class.ts#L18)
 
 #### Parameters
 
@@ -160,7 +160,7 @@ Defined in: [src/classes/dualstore/DualIndexStore.class.ts:18](https://github.co
 
 > **listNames**(`hash`): `string`[]
 
-Defined in: [src/classes/dualstore/DualIndexStore.class.ts:93](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/dualstore/DualIndexStore.class.ts#L93)
+Defined in: [src/classes/dualstore/DualIndexStore.class.ts:93](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/dualstore/DualIndexStore.class.ts#L93)
 
 #### Parameters
 
@@ -178,7 +178,7 @@ Defined in: [src/classes/dualstore/DualIndexStore.class.ts:93](https://github.co
 
 > **rename**(`oldName`, `newName`): `void`
 
-Defined in: [src/classes/dualstore/DualIndexStore.class.ts:83](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/dualstore/DualIndexStore.class.ts#L83)
+Defined in: [src/classes/dualstore/DualIndexStore.class.ts:83](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/dualstore/DualIndexStore.class.ts#L83)
 
 #### Parameters
 
@@ -200,7 +200,7 @@ Defined in: [src/classes/dualstore/DualIndexStore.class.ts:83](https://github.co
 
 > **set**(`hash`, `value`, `names`): `void`
 
-Defined in: [src/classes/dualstore/DualIndexStore.class.ts:32](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/dualstore/DualIndexStore.class.ts#L32)
+Defined in: [src/classes/dualstore/DualIndexStore.class.ts:32](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/dualstore/DualIndexStore.class.ts#L32)
 
 #### Parameters
 

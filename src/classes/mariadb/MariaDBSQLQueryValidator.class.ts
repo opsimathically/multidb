@@ -97,7 +97,7 @@ export type validator_options_t = {
 
 /* ------------------------------ tokenizer types ------------------------------ */
 
-type token_kind_t =
+export type token_kind_t =
   | 'ident'
   | 'keyword'
   | 'string'
@@ -106,43 +106,43 @@ type token_kind_t =
   | 'operator'
   | 'eof';
 
-type token_t = {
+export type token_t = {
   kind: token_kind_t;
   value: string;
   pos: number;
 };
 
-type token_stream_t = {
+export type token_stream_t = {
   tokens: token_t[];
   i: number;
 };
 
 /* --------------------------------- ast types -------------------------------- */
 
-type qualified_table_name_t = {
+export type qualified_table_name_t = {
   db: string | null;
   table: string;
   alias: string | null;
 };
 
-type column_ref_t = {
+export type column_ref_t = {
   qualifier: string | null;
   name: string;
   pos: number;
 };
 
-type star_ref_t = {
+export type star_ref_t = {
   kind: 'star';
   qualifier: string | null;
   pos: number;
 };
 
-type expr_span_t = {
+export type expr_span_t = {
   start_pos: number;
   end_pos: number;
 };
 
-type join_clause_t = {
+export type join_clause_t = {
   join_type:
     | 'join'
     | 'left join'
@@ -154,12 +154,12 @@ type join_clause_t = {
   on_span: expr_span_t | null;
 };
 
-type from_source_t = {
+export type from_source_t = {
   table: qualified_table_name_t;
   joins: join_clause_t[];
 };
 
-type select_ast_t = {
+export type select_ast_t = {
   kind: 'select';
   select_expr_spans: expr_span_t[];
   from_sources: from_source_t[];
@@ -179,7 +179,7 @@ type select_ast_t = {
   order_by_column_refs: column_ref_t[];
 };
 
-type insert_ast_t = {
+export type insert_ast_t = {
   kind: 'insert';
   target: qualified_table_name_t;
   mode: 'values' | 'set';
@@ -188,7 +188,7 @@ type insert_ast_t = {
   set_pairs: { column: column_ref_t; value: expr_span_t }[] | null;
 };
 
-type update_ast_t = {
+export type update_ast_t = {
   kind: 'update';
   target: qualified_table_name_t;
   set_pairs: { column: column_ref_t; value: expr_span_t }[];
@@ -196,14 +196,14 @@ type update_ast_t = {
   where_column_refs: column_ref_t[];
 };
 
-type delete_ast_t = {
+export type delete_ast_t = {
   kind: 'delete';
   target: qualified_table_name_t;
   where_span: expr_span_t | null;
   where_column_refs: column_ref_t[];
 };
 
-type parsed_query_ast_t =
+export type parsed_query_ast_t =
   | select_ast_t
   | insert_ast_t
   | update_ast_t

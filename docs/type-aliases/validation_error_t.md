@@ -8,7 +8,7 @@
 
 > **validation\_error\_t** = `object`
 
-Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:56](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L56)
+Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:56](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L56)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:56](https://g
 
 > **code**: `"unsupported_query"` \| `"parse_error"` \| `"unknown_table"` \| `"unknown_column"` \| `"ambiguous_column"` \| `"invalid_qualifier"` \| `"values_count_mismatch"` \| `"missing_set_clause"` \| `"missing_values_clause"` \| `"missing_table"` \| `"invalid_syntax"`
 
-Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:57](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L57)
+Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:57](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L57)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:57](https://g
 
 > **message**: `string`
 
-Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:69](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L69)
+Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:69](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L69)
 
 ***
 
@@ -32,4 +32,4 @@ Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:69](https://g
 
 > `optional` **position**: `number`
 
-Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:70](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L70)
+Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:70](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L70)

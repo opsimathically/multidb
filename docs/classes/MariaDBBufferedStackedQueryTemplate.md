@@ -6,7 +6,7 @@
 
 # Class: MariaDBBufferedStackedQueryTemplate\<query_args_g, result_row_g\>
 
-Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:5](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L5)
+Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:5](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L5)
 
 ## Type Parameters
 
@@ -24,7 +24,7 @@ Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:5]
 
 > **new MariaDBBufferedStackedQueryTemplate**\<`query_args_g`, `result_row_g`\>(`params`): `MariaDBBufferedStackedQueryTemplate`\<`query_args_g`, `result_row_g`\>
 
-Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:29](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L29)
+Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:29](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L29)
 
 #### Parameters
 
@@ -72,7 +72,7 @@ Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:29
 
 > **buffered\_array**: [`BufferedArray`](BufferedArray.md)\<`query_args_g`, `MariaDBBufferedStackedQueryTemplate`\<`query_args_g`, `result_row_g`\>\> \| `undefined`
 
-Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:15](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L15)
+Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:15](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L15)
 
 ***
 
@@ -80,7 +80,7 @@ Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:15
 
 > **db**: `string`
 
-Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:12](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L12)
+Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:12](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L12)
 
 ***
 
@@ -88,7 +88,7 @@ Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:12
 
 > **expected\_value\_set\_count**: `number`
 
-Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:11](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L11)
+Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:11](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L11)
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:11
 
 > **flush\_info**: `object`
 
-Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:21](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L21)
+Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:21](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L21)
 
 #### last\_flushed\_cnt
 
@@ -112,7 +112,7 @@ Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:21
 
 > **pool**: [`MariaDBPool`](MariaDBPool.md)
 
-Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:13](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L13)
+Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:13](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L13)
 
 ***
 
@@ -120,7 +120,7 @@ Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:13
 
 > **query\_insert\_and\_columns**: `string`
 
-Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:7](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L7)
+Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:7](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L7)
 
 ***
 
@@ -128,7 +128,7 @@ Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:7]
 
 > **sha1**: `string`
 
-Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:14](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L14)
+Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:14](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L14)
 
 ***
 
@@ -136,7 +136,7 @@ Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:14
 
 > `optional` **trailing\_clause**: `string`
 
-Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:9](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L9)
+Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:9](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L9)
 
 ## Methods
 
@@ -144,7 +144,7 @@ Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:9]
 
 > **bufferedExecute**(`params`): `Promise`\<`result_row_g`[] \| `null`\>
 
-Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:64](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L64)
+Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:64](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L64)
 
 #### Parameters
 
@@ -164,7 +164,7 @@ Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:64
 
 > **execute**(`params?`): `Promise`\<`result_row_g`[] \| `null`\>
 
-Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:76](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L76)
+Defined in: [src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts:76](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBBufferedStackedQueryTemplate.class.ts#L76)
 
 #### Parameters
 

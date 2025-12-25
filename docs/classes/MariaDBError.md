@@ -6,7 +6,7 @@
 
 # Class: MariaDBError
 
-Defined in: [src/classes/mariadb/MariaDBError.class.ts:9](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBError.class.ts#L9)
+Defined in: [src/classes/mariadb/MariaDBError.class.ts:9](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBError.class.ts#L9)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [src/classes/mariadb/MariaDBError.class.ts:9](https://github.com/ops
 
 > **new MariaDBError**(`params`): `MariaDBError`
 
-Defined in: [src/classes/mariadb/MariaDBError.class.ts:23](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBError.class.ts#L23)
+Defined in: [src/classes/mariadb/MariaDBError.class.ts:23](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBError.class.ts#L23)
 
 #### Parameters
 
@@ -70,7 +70,7 @@ Defined in: node\_modules/typescript/lib/lib.es2022.error.d.ts:26
 
 > **data**: `object`
 
-Defined in: [src/classes/mariadb/MariaDBError.class.ts:10](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBError.class.ts#L10)
+Defined in: [src/classes/mariadb/MariaDBError.class.ts:10](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBError.class.ts#L10)
 
 #### category
 

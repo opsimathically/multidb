@@ -6,7 +6,7 @@
 
 # Class: MariaDBPool
 
-Defined in: [src/classes/mariadb/MariaDBPool.class.ts:17](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBPool.class.ts#L17)
+Defined in: [src/classes/mariadb/MariaDBPool.class.ts:17](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBPool.class.ts#L17)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [src/classes/mariadb/MariaDBPool.class.ts:17](https://github.com/ops
 
 > **new MariaDBPool**(`params`): `MariaDBPool`
 
-Defined in: [src/classes/mariadb/MariaDBPool.class.ts:40](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBPool.class.ts#L40)
+Defined in: [src/classes/mariadb/MariaDBPool.class.ts:40](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBPool.class.ts#L40)
 
 #### Parameters
 
@@ -62,7 +62,7 @@ Defined in: [src/classes/mariadb/MariaDBPool.class.ts:40](https://github.com/ops
 
 > **buffered\_stacked\_query\_templates**: [`DualIndexStore`](DualIndexStore.md)\<[`MariaDBBufferedStackedQueryTemplate`](MariaDBBufferedStackedQueryTemplate.md)\<`unknown`, `unknown`\>\>
 
-Defined in: [src/classes/mariadb/MariaDBPool.class.ts:34](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBPool.class.ts#L34)
+Defined in: [src/classes/mariadb/MariaDBPool.class.ts:34](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBPool.class.ts#L34)
 
 ***
 
@@ -70,7 +70,7 @@ Defined in: [src/classes/mariadb/MariaDBPool.class.ts:34](https://github.com/ops
 
 > **db**: `string`
 
-Defined in: [src/classes/mariadb/MariaDBPool.class.ts:19](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBPool.class.ts#L19)
+Defined in: [src/classes/mariadb/MariaDBPool.class.ts:19](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBPool.class.ts#L19)
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: [src/classes/mariadb/MariaDBPool.class.ts:19](https://github.com/ops
 
 > **name**: `string`
 
-Defined in: [src/classes/mariadb/MariaDBPool.class.ts:18](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBPool.class.ts#L18)
+Defined in: [src/classes/mariadb/MariaDBPool.class.ts:18](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBPool.class.ts#L18)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: [src/classes/mariadb/MariaDBPool.class.ts:18](https://github.com/ops
 
 > **pool**: `Pool`
 
-Defined in: [src/classes/mariadb/MariaDBPool.class.ts:20](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBPool.class.ts#L20)
+Defined in: [src/classes/mariadb/MariaDBPool.class.ts:20](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBPool.class.ts#L20)
 
 ***
 
@@ -94,7 +94,7 @@ Defined in: [src/classes/mariadb/MariaDBPool.class.ts:20](https://github.com/ops
 
 > **pool\_options**: `PoolOptions`
 
-Defined in: [src/classes/mariadb/MariaDBPool.class.ts:22](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBPool.class.ts#L22)
+Defined in: [src/classes/mariadb/MariaDBPool.class.ts:22](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBPool.class.ts#L22)
 
 ***
 
@@ -102,7 +102,7 @@ Defined in: [src/classes/mariadb/MariaDBPool.class.ts:22](https://github.com/ops
 
 > **query\_templates**: [`DualIndexStore`](DualIndexStore.md)\<[`MariaDBQueryTemplate`](MariaDBQueryTemplate.md)\<`unknown`, `unknown`\>\>
 
-Defined in: [src/classes/mariadb/MariaDBPool.class.ts:27](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBPool.class.ts#L27)
+Defined in: [src/classes/mariadb/MariaDBPool.class.ts:27](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBPool.class.ts#L27)
 
 ***
 
@@ -110,7 +110,7 @@ Defined in: [src/classes/mariadb/MariaDBPool.class.ts:27](https://github.com/ops
 
 > **query\_validator**: [`MariaDBSQLQueryValidator`](MariaDBSQLQueryValidator.md)
 
-Defined in: [src/classes/mariadb/MariaDBPool.class.ts:24](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBPool.class.ts#L24)
+Defined in: [src/classes/mariadb/MariaDBPool.class.ts:24](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBPool.class.ts#L24)
 
 ***
 
@@ -118,7 +118,7 @@ Defined in: [src/classes/mariadb/MariaDBPool.class.ts:24](https://github.com/ops
 
 > **schema\_introspector**: [`MariaDBDatabaseSchemaIntrospector`](MariaDBDatabaseSchemaIntrospector.md)
 
-Defined in: [src/classes/mariadb/MariaDBPool.class.ts:23](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBPool.class.ts#L23)
+Defined in: [src/classes/mariadb/MariaDBPool.class.ts:23](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBPool.class.ts#L23)
 
 ***
 
@@ -126,7 +126,7 @@ Defined in: [src/classes/mariadb/MariaDBPool.class.ts:23](https://github.com/ops
 
 > **schema\_snapshot**: [`schema_snapshot_t`](../type-aliases/schema_snapshot_t.md)
 
-Defined in: [src/classes/mariadb/MariaDBPool.class.ts:25](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBPool.class.ts#L25)
+Defined in: [src/classes/mariadb/MariaDBPool.class.ts:25](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBPool.class.ts#L25)
 
 ***
 
@@ -134,7 +134,7 @@ Defined in: [src/classes/mariadb/MariaDBPool.class.ts:25](https://github.com/ops
 
 > **stacked\_query\_templates**: [`DualIndexStore`](DualIndexStore.md)\<[`MariaDBStackedQueryTemplate`](MariaDBStackedQueryTemplate.md)\<`unknown`, `unknown`\>\>
 
-Defined in: [src/classes/mariadb/MariaDBPool.class.ts:30](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBPool.class.ts#L30)
+Defined in: [src/classes/mariadb/MariaDBPool.class.ts:30](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBPool.class.ts#L30)
 
 ***
 
@@ -142,4 +142,4 @@ Defined in: [src/classes/mariadb/MariaDBPool.class.ts:30](https://github.com/ops
 
 > **sync\_pool**: `Pool`
 
-Defined in: [src/classes/mariadb/MariaDBPool.class.ts:21](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBPool.class.ts#L21)
+Defined in: [src/classes/mariadb/MariaDBPool.class.ts:21](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBPool.class.ts#L21)

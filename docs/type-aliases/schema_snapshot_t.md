@@ -8,7 +8,7 @@
 
 > **schema\_snapshot\_t** = `object`
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:18](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L18)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:18](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L18)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:18](
 
 > **database**: `string`
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:22](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L22)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:22](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L22)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:22](
 
 > **dialect**: [`sql_dialect_t`](sql_dialect_t.md)
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:19](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L19)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:19](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L19)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:19](
 
 > **loaded\_at**: `Date`
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:21](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L21)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:21](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L21)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:21](
 
 > **server\_version**: `string`
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:20](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L20)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:20](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L20)
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:20](
 
 > **tables**: `Record`\<`string`, [`table_schema_t`](table_schema_t.md)\>
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:23](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L23)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:23](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L23)
 
 ***
 
@@ -56,4 +56,4 @@ Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:23](
 
 > **views**: `Record`\<`string`, [`view_schema_t`](view_schema_t.md)\>
 
-Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:24](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L24)
+Defined in: [src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts:24](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDatabaseSchemaIntrospector.class.ts#L24)

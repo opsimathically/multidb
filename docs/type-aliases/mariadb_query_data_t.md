@@ -8,7 +8,7 @@
 
 > **mariadb\_query\_data\_t** = `object`
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:118](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L118)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:118](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L118)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:118](https://github.com/opsima
 
 > **column**: `string`
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:120](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L120)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:120](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L120)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:120](https://github.com/opsima
 
 > **compare**: `string`
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:121](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L121)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:121](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L121)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:121](https://github.com/opsima
 
 > `optional` **prefix**: `string`
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:119](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L119)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:119](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L119)
 
 ***
 
@@ -40,4 +40,4 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:119](https://github.com/opsima
 
 > **value**: `string` \| `number` \| `string`[] \| `number`[]
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:122](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L122)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:122](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L122)

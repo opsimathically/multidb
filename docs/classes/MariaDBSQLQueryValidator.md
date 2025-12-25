@@ -6,7 +6,7 @@
 
 # Class: MariaDBSQLQueryValidator
 
-Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:1670](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L1670)
+Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:1670](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L1670)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:1670](https:/
 
 > **new MariaDBSQLQueryValidator**(`schema_snapshot`, `opts?`): `MariaDBSQLQueryValidator`
 
-Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:1675](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L1675)
+Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:1675](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L1675)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:1675](https:/
 
 > **validate**(`sql`): [`validation_result_t`](../type-aliases/validation_result_t.md)
 
-Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:1682](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L1682)
+Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:1682](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L1682)
 
 #### Parameters
 

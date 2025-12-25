@@ -6,7 +6,7 @@
 
 # Class: MariaDBDumpExporter
 
-Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:34](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDumpExporter.class.ts#L34)
+Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:34](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDumpExporter.class.ts#L34)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:34](https://github
 
 > **new MariaDBDumpExporter**(`dump_config`): `MariaDBDumpExporter`
 
-Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:37](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDumpExporter.class.ts#L37)
+Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:37](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDumpExporter.class.ts#L37)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:37](https://github
 
 > **exportDatabase**(): `Promise`\<[`mariadb_dump_export_result_t`](../type-aliases/mariadb_dump_export_result_t.md)\>
 
-Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:41](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDumpExporter.class.ts#L41)
+Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:41](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDumpExporter.class.ts#L41)
 
 #### Returns
 

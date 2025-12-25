@@ -6,7 +6,7 @@
 
 # Class: MariaDB
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:143](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L143)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:143](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L143)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:143](https://github.com/opsima
 
 > **new MariaDB**(): `MariaDB`
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:147](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L147)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:147](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L147)
 
 #### Returns
 
@@ -26,7 +26,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:147](https://github.com/opsima
 
 > **admin\_pools**: `Record`\<`string`, `Pool`\> = `{}`
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:145](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L145)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:145](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L145)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:145](https://github.com/opsima
 
 > **connection\_pools**: `Record`\<`string`, [`MariaDBPool`](MariaDBPool.md)\> = `{}`
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:144](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L144)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:144](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L144)
 
 ## Methods
 
@@ -42,7 +42,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:144](https://github.com/opsima
 
 > **addAdminPool**(`params`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:153](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L153)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:153](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L153)
 
 #### Parameters
 
@@ -66,7 +66,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:153](https://github.com/opsima
 
 > **addBufferedStackedInsertQuery**\<`query_args_g`\>(`params`): `Promise`\<[`MariaDBBufferedStackedQueryTemplate`](MariaDBBufferedStackedQueryTemplate.md)\<`query_args_g`, `ResultSetHeader`\> \| `null`\>
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:364](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L364)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:364](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L364)
 
 #### Type Parameters
 
@@ -124,7 +124,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:364](https://github.com/opsima
 
 > **addPool**(`params`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:165](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L165)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:165](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L165)
 
 #### Parameters
 
@@ -152,7 +152,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:165](https://github.com/opsima
 
 > **addQuery**\<`query_args_g`, `result_row_g`\>(`params`): `Promise`\<[`MariaDBQueryTemplate`](MariaDBQueryTemplate.md)\<`query_args_g`, `result_row_g`\> \| `null`\>
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:449](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L449)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:449](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L449)
 
 #### Type Parameters
 
@@ -198,7 +198,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:449](https://github.com/opsima
 
 > **addStackedInsertQuery**\<`query_args_g`\>(`params`): `Promise`\<[`MariaDBStackedQueryTemplate`](MariaDBStackedQueryTemplate.md)\<`query_args_g`, `ResultSetHeader`\> \| `null`\>
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:251](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L251)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:251](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L251)
 
 #### Type Parameters
 
@@ -248,7 +248,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:251](https://github.com/opsima
 
 > **createDatabaseIfNotExists**(`params`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:554](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L554)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:554](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L554)
 
 #### Parameters
 
@@ -272,7 +272,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:554](https://github.com/opsima
 
 > **createTable**(`params`): `Promise`\<`false` \| `undefined`\>
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:644](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L644)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:644](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L644)
 
 #### Parameters
 
@@ -300,7 +300,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:644](https://github.com/opsima
 
 > **databaseExists**(`params`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:592](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L592)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:592](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L592)
 
 #### Parameters
 
@@ -324,7 +324,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:592](https://github.com/opsima
 
 > **dropDatabaseIfExists**(`params`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:517](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L517)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:517](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L517)
 
 #### Parameters
 
@@ -348,7 +348,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:517](https://github.com/opsima
 
 > **generateSelectionQuery**(`params`): `Promise`\<[`mariadb_selection_query_t`](../type-aliases/mariadb_selection_query_t.md) \| `null`\>
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:667](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L667)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:667](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L667)
 
 #### Parameters
 
@@ -388,7 +388,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:667](https://github.com/opsima
 
 > **isValidDatabaseNameString**(`name`): `boolean`
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:509](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L509)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:509](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L509)
 
 #### Parameters
 
@@ -406,7 +406,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:509](https://github.com/opsima
 
 > **shutdown**(`params`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:211](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L211)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:211](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L211)
 
 #### Parameters
 
@@ -430,7 +430,7 @@ Defined in: [src/classes/mariadb/MariaDB.class.ts:211](https://github.com/opsima
 
 > **tableExists**(`params`): `Promise`\<`boolean`\>
 
-Defined in: [src/classes/mariadb/MariaDB.class.ts:614](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDB.class.ts#L614)
+Defined in: [src/classes/mariadb/MariaDB.class.ts:614](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDB.class.ts#L614)
 
 #### Parameters
 

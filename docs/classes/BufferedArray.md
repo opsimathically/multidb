@@ -6,7 +6,7 @@
 
 # Class: BufferedArray\<T, extra_t\>
 
-Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:11](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/buffered_array/BufferedArray.class.ts#L11)
+Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:11](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/buffered_array/BufferedArray.class.ts#L11)
 
 ## Type Parameters
 
@@ -24,7 +24,7 @@ Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:11](https://gith
 
 > **new BufferedArray**\<`T`, `extra_t`\>(`params`): `BufferedArray`\<`T`, `extra_t`\>
 
-Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:20](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/buffered_array/BufferedArray.class.ts#L20)
+Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:20](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/buffered_array/BufferedArray.class.ts#L20)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:20](https://gith
 
 ###### config
 
-`buffered_array_config_i`
+[`buffered_array_config_i`](../interfaces/buffered_array_config_i.md)
 
 ###### extra
 
@@ -40,7 +40,7 @@ Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:20](https://gith
 
 ###### flush_callback
 
-`flush_callback_t`\<`T`, `extra_t`\>
+[`flush_callback_t`](../type-aliases/flush_callback_t.md)\<`T`, `extra_t`\>
 
 #### Returns
 
@@ -52,7 +52,7 @@ Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:20](https://gith
 
 > **extra**: `extra_t`
 
-Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:18](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/buffered_array/BufferedArray.class.ts#L18)
+Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:18](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/buffered_array/BufferedArray.class.ts#L18)
 
 ## Methods
 
@@ -60,7 +60,7 @@ Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:18](https://gith
 
 > **add**(`item`): `Promise`\<`void`\>
 
-Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:56](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/buffered_array/BufferedArray.class.ts#L56)
+Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:56](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/buffered_array/BufferedArray.class.ts#L56)
 
 #### Parameters
 
@@ -78,7 +78,7 @@ Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:56](https://gith
 
 > **addMany**(`items`): `Promise`\<`void`\>
 
-Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:31](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/buffered_array/BufferedArray.class.ts#L31)
+Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:31](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/buffered_array/BufferedArray.class.ts#L31)
 
 #### Parameters
 
@@ -96,7 +96,7 @@ Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:31](https://gith
 
 > **flushNow**(): `Promise`\<`void`\>
 
-Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:72](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/buffered_array/BufferedArray.class.ts#L72)
+Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:72](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/buffered_array/BufferedArray.class.ts#L72)
 
 #### Returns
 
@@ -108,7 +108,7 @@ Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:72](https://gith
 
 > **getSize**(): `number`
 
-Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:99](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/buffered_array/BufferedArray.class.ts#L99)
+Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:99](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/buffered_array/BufferedArray.class.ts#L99)
 
 #### Returns
 
@@ -120,7 +120,7 @@ Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:99](https://gith
 
 > **shutdown**(): `Promise`\<`void`\>
 
-Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:93](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/buffered_array/BufferedArray.class.ts#L93)
+Defined in: [src/classes/buffered\_array/BufferedArray.class.ts:93](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/buffered_array/BufferedArray.class.ts#L93)
 
 #### Returns
 

@@ -6,7 +6,7 @@
 
 # Class: MariaDBDumpImporter
 
-Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:56](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDumpImporter.class.ts#L56)
+Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:56](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDumpImporter.class.ts#L56)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:56](https://github
 
 > **new MariaDBDumpImporter**(`options`): `MariaDBDumpImporter`
 
-Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:59](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDumpImporter.class.ts#L59)
+Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:59](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDumpImporter.class.ts#L59)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:59](https://github
 
 > **importFile**(`dump_path`): `Promise`\<[`mysql_import_result_t`](../type-aliases/mysql_import_result_t.md)\>
 
-Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:158](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDumpImporter.class.ts#L158)
+Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:158](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDumpImporter.class.ts#L158)
 
 #### Parameters
 
@@ -50,7 +50,7 @@ Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:158](https://githu
 
 > **importFromStream**(`sql_stream`): `Promise`\<[`mysql_import_result_t`](../type-aliases/mysql_import_result_t.md)\>
 
-Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:69](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDumpImporter.class.ts#L69)
+Defined in: [src/classes/mariadb/MariaDBDumpImporter.class.ts:69](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDumpImporter.class.ts#L69)
 
 #### Parameters
 

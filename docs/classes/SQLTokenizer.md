@@ -6,7 +6,7 @@
 
 # Class: SQLTokenizer
 
-Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:332](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L332)
+Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:332](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L332)
 
 ## Constructors
 
@@ -22,9 +22,9 @@ Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:332](https://
 
 ### tokenize()
 
-> **tokenize**(`sql`): `token_t`[]
+> **tokenize**(`sql`): [`token_t`](../type-aliases/token_t.md)[]
 
-Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:333](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L333)
+Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:333](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBSQLQueryValidator.class.ts#L333)
 
 #### Parameters
 
@@ -34,4 +34,4 @@ Defined in: [src/classes/mariadb/MariaDBSQLQueryValidator.class.ts:333](https://
 
 #### Returns
 
-`token_t`[]
+[`token_t`](../type-aliases/token_t.md)[]

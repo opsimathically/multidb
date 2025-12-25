@@ -8,4 +8,4 @@
 
 > **mongodb\_databases\_t** = `Record`\<`string`, `Record`\<`string`, `boolean`\>\>
 
-Defined in: [src/classes/mongodb/MongoDB.class.ts:35](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mongodb/MongoDB.class.ts#L35)
+Defined in: [src/classes/mongodb/MongoDB.class.ts:35](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mongodb/MongoDB.class.ts#L35)

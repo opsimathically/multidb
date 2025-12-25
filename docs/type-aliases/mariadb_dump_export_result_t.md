@@ -8,7 +8,7 @@
 
 > **mariadb\_dump\_export\_result\_t** = `object`
 
-Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:26](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDumpExporter.class.ts#L26)
+Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:26](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDumpExporter.class.ts#L26)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:26](https://github
 
 > **dumped\_bytes**: `number`
 
-Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:29](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDumpExporter.class.ts#L29)
+Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:29](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDumpExporter.class.ts#L29)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:29](https://github
 
 > **duration\_ms**: `number`
 
-Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:30](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDumpExporter.class.ts#L30)
+Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:30](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDumpExporter.class.ts#L30)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:30](https://github
 
 > **exit\_code**: `number`
 
-Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:27](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDumpExporter.class.ts#L27)
+Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:27](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDumpExporter.class.ts#L27)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:27](https://github
 
 > **signal**: `NodeJS.Signals` \| `null`
 
-Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:28](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDumpExporter.class.ts#L28)
+Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:28](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDumpExporter.class.ts#L28)
 
 ***
 
@@ -48,4 +48,4 @@ Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:28](https://github
 
 > **stderr**: `string`
 
-Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:31](https://github.com/opsimathically/multidb/blob/cb87dfe12e5751ac730d96032e7ecbce4dd94ef0/src/classes/mariadb/MariaDBDumpExporter.class.ts#L31)
+Defined in: [src/classes/mariadb/MariaDBDumpExporter.class.ts:31](https://github.com/opsimathically/multidb/blob/0e247fabc5845e87689c3e7ef797697663764446/src/classes/mariadb/MariaDBDumpExporter.class.ts#L31)
