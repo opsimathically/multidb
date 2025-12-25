@@ -10,7 +10,7 @@ The design philosophy of these classes is to provide a middle layer which is not
 
 Most methods require strings for pool name and database name, this is a bit inefficient, but adds clarity of functionality when I'm reading years old code. A lot of my code reflects the anxiety of managing a large personal code base, this is an affectation of that anxiety. If you don't want to see the database name/pool name over and over, you can just create a wrapper to supply them automatically.
 
-**_IMPORTANT_**: each of the query template creators in the MariaDB class has an option to skip the query validator. If you're queries are weird, and you know what you're doing, you can disable the validator. This can be necessary for things like renaming results (eg SELECT something as something_else), etc.
+**_IMPORTANT_**: each of the query template creators in the MariaDB class has an option to skip the query validator. If your queries are weird, and you know what you're doing, you can disable the validator. This can be necessary for things like renaming results (eg SELECT something as something_else), etc.
 
 We provide each validated query a class instance with an execute method, which can run either in a streamed row by row callback to alleviate potential memory consumption issues, or without a callback to retrieve all rows at once.
 
@@ -18,13 +18,21 @@ We provide each validated query a class instance with an execute method, which c
 
 Our MariaDB client provides a simple way to template different query types.
 
-- Query: standard query that takes standard execute parameters
+- Query: standard query that takes standard execute parameters.
 - Stacked Insert Query: query which takes a stack of multiple sets of arguments.
-- Buffered Stacked Insert Query: stacked query which will stack query arguments until a limit size before flushing/executing the query
+- Buffered Stacked Insert Query: stacked query which will stack query arguments until a limit size before flushing/executing the query.
 
 ### MariaDB Usage Examples
 
 ```typescript
+import {
+  MongoDB,
+  MariaDBDumpImporter,
+  MariaDB,
+  MariaDBDatabaseSchemaIntrospector,
+  MariaDBSQLQueryValidator
+} from '@opsimathically/multidb';
+
 // Example: Using an Admin Pool to Create/Drop a database.
 
 // standard pool configuration
@@ -76,6 +84,26 @@ const mariadb_adminpool_config = {
     db: 'unit_test_db_1000'
   });
 
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% Import Schema From File %%%%%%%%%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  const importer = new MariaDBDumpImporter({
+    mysql_bin_path: 'mysql',
+    host: '127.0.0.1',
+    port: 3306,
+    user: 'your_mariadb_user',
+    password: 'your_mariadb_password!',
+    database: 'unit_test_db_1000',
+    default_character_set: 'utf8mb4',
+    use_mysql_pwd_env: true,
+    connect_timeout_seconds: 10
+  });
+
+  const result = await importer.importFile(
+    './test/sqldumps_used_by_test/testdb.sql'
+  );
+
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% Standard Pools %%%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -91,7 +119,7 @@ const mariadb_adminpool_config = {
 
   // add a query
   const insert_query = await mariadb_client.addQuery<
-    example_inert_t,
+    example_insert_t,
     ResultSetHeader
   >({
     pool: 'db1_pool1',
@@ -116,6 +144,113 @@ const mariadb_adminpool_config = {
   });
   await insert_query.execute({
     args: ['something3', 'something4']
+  });
+
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% Basic Stacked Queries %%%%%%%%%%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  const stacked_insert = await mariadb_client.addStackedInsertQuery<
+    [string, string]
+  >({
+    pool: 'db1_pool1',
+    db: 'unit_test_db_1000',
+    name: 'testInsertQuery',
+    query_insert_and_columns: `INSERT INTO unit_test_db_1000.new_table  ( column_1, column_2 )`,
+    expected_value_set_count: 2
+  });
+
+  await stacked_insert?.execute({
+    args_array: [
+      ['hello1', 'hello2'],
+      ['hello3', 'hello4'],
+      ['hello5', 'hello6']
+    ]
+  });
+
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% Buffered Stacked Query %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  const buffered_stacked_insert =
+    await mariadb_client.addBufferedStackedInsertQuery<[string, string]>({
+      pool: 'db1_pool1',
+      db: 'unit_test_db_1000',
+      name: 'testInsertQuery',
+      query_insert_and_columns: `INSERT INTO unit_test_db_1000.new_table  ( column_1, column_2 )`,
+      expected_value_set_count: 2,
+      max_timeout_for_insert_when_no_new_records_ms: 1000,
+      max_rows_before_insert_len: 10
+    });
+
+  assert(buffered_stacked_insert, 'Failed to create buffered stacked insert.');
+
+  await buffered_stacked_insert.bufferedExecute({
+    args_array: [
+      ['hello1', 'hello2'],
+      ['hello3', 'hello4'],
+      ['hello5', 'hello6']
+    ]
+  });
+
+  await buffered_stacked_insert.bufferedExecute({
+    args_array: [
+      ['hello7', 'hello8'],
+      ['hello9', 'hello10'],
+      ['hello11', 'hello12'],
+      ['hello13', 'hello14']
+    ]
+  });
+
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% Select Queries %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  type select_row_example_t = {
+    id: number;
+    column_1: string;
+    column_2: string;
+  };
+
+  const select_query_example = await mariadb_client.addQuery<
+    null,
+    select_row_example_t
+  >({
+    pool: 'db1_pool1',
+    db: 'unit_test_db_1000',
+    name: 'selectRecords',
+    query: `SELECT * FROM unit_test_db_1000.new_table;`
+  });
+
+  // Iterate rows via callback.  This uses streams via the callback API in the underlying
+  // mysql library.  This is preferred for larger selects where you have to iterate over a
+  // large number of rows.  Rows are fetched one at a time, WITHOUT using a cursor, so memory
+  // exhaustion is less of a risk.
+  await select_query_example.execute({
+    args: null,
+    cb: async function (params) {
+      //
+      // params.row will be of type select_row_example_t
+      //
+      // you can stop reading results at any time by returning
+      // the string breakloop.
+      // eg:
+      // return 'breakloop';
+    }
+  });
+
+  // you can also just fetch all rows at once.  In this case
+  // it'll be an array of select_row_example_t.
+  const selected_rows = await select_query_example.execute();
+
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% Shutdown %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  // this will close all connections in all pools
+  const shutdown_ok = await mariadb_client.shutdown({
+    admin_pools: true,
+    standard_pools: true
   });
 })();
 ```

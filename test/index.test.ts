@@ -120,7 +120,7 @@ import type { ResultSetHeader } from 'mysql2';
       });
 
       const result = await importer.importFile(
-        '/home/tourist/github_resume_projects/multidb/test/sqldumps_used_by_test/testdb.sql'
+        './test/sqldumps_used_by_test/testdb.sql'
       );
       assert.ok(result?.exit_code === 0, 'Importing SQL schema failed.');
 
@@ -148,6 +148,7 @@ import type { ResultSetHeader } from 'mysql2';
       );
       assert.ok(validation_result.ok, 'Query validation failed.');
 
+      // test validator again
       const validation_result2 = query_validator.validate(
         'SELECT id as bad_val FROM new_table WHERE id = 1'
       );
@@ -162,74 +163,6 @@ import type { ResultSetHeader } from 'mysql2';
         db: 'unit_test_db_1000',
         pool_options: mariadb_pool_config_1
       });
-
-      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      // %%% Non-Stacked Insert %%%%%%%%%%%%%%%%%%%%%%%%%
-      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-      const query_template = await mariadb_client.addQuery<
-        [string, string],
-        ResultSetHeader
-      >({
-        pool: 'db1_pool1',
-        db: 'unit_test_db_1000',
-        name: 'testInsertQuery',
-        query: `
-        INSERT INTO unit_test_db_1000.new_table
-        (
-          column_1,
-          column_2
-        )
-        VALUES
-        (
-          ?,
-          ?
-        )`
-      });
-
-      const query_template2 = await mariadb_client.addQuery({
-        pool: 'db1_pool1',
-        db: 'unit_test_db_1000',
-        name: 'selectRecords',
-        query: `SELECT * FROM unit_test_db_1000.new_table;`
-      });
-
-      if (query_template) {
-        await query_template.execute({
-          args: ['blah', 'blah'],
-          cb: async function (params) {
-            if (params) debugger;
-          }
-        });
-        const insert_result = await query_template.execute({
-          args: ['blah3', 'blah3']
-        });
-        assert(Array.isArray(insert_result), 'Insert result was not an array.');
-        assert(
-          insert_result[0]?.affectedRows,
-          'Rows were not inserted/affected.'
-        );
-      }
-
-      const aggregated_results: Array<Array<any>> = [];
-      for (let idx = 0; idx < 500; idx++) {
-        const results2: Array<any> = [];
-
-        await query_template2?.execute({
-          args: [],
-          cb: async (params) => {
-            results2.push(params.row);
-            return 'breakloop';
-          }
-        });
-
-        aggregated_results.push(results2);
-      }
-
-      assert.ok(
-        aggregated_results.length === 500,
-        'Results length is appropriate.'
-      );
 
       // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       // %%% Basic Stacked Queries %%%%%%%%%%%%%%%%%%%%%%%
@@ -327,11 +260,64 @@ import type { ResultSetHeader } from 'mysql2';
         if (count_result[0]) {
           assert.ok(
             count_result[0].row_count ===
-              buffered_stacked_insert.flush_info.total_flushed_cnt + 5,
-            'The new_table count was an unexpected length (should be 212)'
+              buffered_stacked_insert.flush_info.total_flushed_cnt + 3,
+            `The new_table count was an unexpected length (${count_result[0].row_count} found but ${buffered_stacked_insert.flush_info.total_flushed_cnt} was counted)`
           );
         }
       }
+
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      // %%% Select Queries %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      type select_row_example_t = {
+        id: number;
+        column_1: string;
+        column_2: string;
+      };
+
+      const select_query = await mariadb_client.addQuery<
+        null,
+        select_row_example_t
+      >({
+        pool: 'db1_pool1',
+        db: 'unit_test_db_1000',
+        name: 'selectRecords',
+        query: `SELECT * FROM unit_test_db_1000.new_table;`
+      });
+
+      assert.ok(select_query, 'No select query created.');
+
+      let row_iter_n = 0;
+      await select_query.execute({
+        args: null,
+        cb: async (params) => {
+          if (row_iter_n === 5 && params.row.column_1 === 'hello5') {
+            return 'breakloop';
+          }
+          row_iter_n++;
+        }
+      });
+
+      assert.ok(row_iter_n === 5, 'Row iteration count mismatch.');
+
+      const all_rows_for_query = await select_query.execute();
+
+      assert.ok(Array.isArray(all_rows_for_query), 'Result was not an array.');
+      assert.ok(
+        all_rows_for_query.length === 210,
+        `Row count mismatch, should be 210 but was ${all_rows_for_query.length}.`
+      );
+
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      // %%% Cleanup/Shutdown Pools %%%%%%%%%%%%%%%%%%%%%
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      // remove the unit test database
+      await mariadb_client.dropDatabaseIfExists({
+        adminpool: 'db1_adminpool1',
+        db: 'unit_test_db_1000'
+      });
 
       const shutdown_ok = await mariadb_client.shutdown({
         admin_pools: true,
