@@ -67,13 +67,18 @@ import type {
 } from './classes/mariadb/MariaDBDumpImporter.class';
 import { MariaDBDumpImporter } from './classes/mariadb/MariaDBDumpImporter.class';
 
+import type {
+  mariadb_dump_exporter_config_i,
+  mariadb_dump_export_result_t
+} from './classes/mariadb/MariaDBDumpExporter.class';
+import { MariaDBDumpExporter } from './classes/mariadb/MariaDBDumpExporter.class';
+
 export type {
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% MongoDB %%%%%%%%%%%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   coll_change_stream_handler_t,
   db_change_stream_handler_t,
-
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% MariaDBError %%%%%%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -85,6 +90,11 @@ export type {
   mariadb_selection_query_t,
   mariadb_table_collumn_definition_t,
   mariadb_table_definition_t,
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% MariaDBDumpExporter %%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  mariadb_dump_exporter_config_i,
+  mariadb_dump_export_result_t,
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% MariaDBDumpImporter %%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -152,6 +162,10 @@ export {
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   MariaDBPool,
 
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // %%% MariaDBDumpExporter %%%%%%%%%%%%%%%
+  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  MariaDBDumpExporter,
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% MariaDBDumpImporter %%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

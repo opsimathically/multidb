@@ -1,11 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert';
-
+import fs_promises from 'fs/promises';
 import type { ChangeStream, ChangeStreamDocument, Document } from 'mongodb';
 
 import {
   MongoDB,
   MariaDBDumpImporter,
+  MariaDBDumpExporter,
   MariaDB,
   MariaDBDatabaseSchemaIntrospector,
   MariaDBSQLQueryValidator
@@ -123,6 +124,40 @@ import type { ResultSetHeader } from 'mysql2';
         './test/sqldumps_used_by_test/testdb.sql'
       );
       assert.ok(result?.exit_code === 0, 'Importing SQL schema failed.');
+
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      // %%% Run Exporter Test %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      // MariaDBDumpExporter
+      const exporter = new MariaDBDumpExporter({
+        host: '127.0.0.1',
+        port: 3306,
+        user: 'your_mariadb_user',
+        password: 'your_mariadb_password!',
+        database: 'unit_test_db_1000',
+        output_file_path: '/tmp/unit_test_db_export_test.sql',
+        extra_args: [
+          '--single-transaction',
+          '--quick',
+          '--routines',
+          '--events'
+        ]
+      });
+
+      const export_db_result = await exporter.exportDatabase();
+      assert.ok(export_db_result.exit_code === 0, 'DB export failed.');
+      const export_stat_result = await fs_promises.stat(
+        '/tmp/unit_test_db_export_test.sql'
+      );
+
+      assert.ok(
+        export_db_result.dumped_bytes === export_stat_result.size,
+        'Dump size mismatch on dumped file stat vs. export.'
+      );
+
+      // cleanup the test dump file
+      await fs_promises.unlink('/tmp/unit_test_db_export_test.sql');
 
       // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       // %%% Run Introspector/Validator Tests %%%%%%%%%%%%%
