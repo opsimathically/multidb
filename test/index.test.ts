@@ -75,7 +75,7 @@ import { createReadStream } from 'node:fs';
   FLUSH PRIVILEGES;
   */
 
-  const mariadb_tests_enabled = false;
+  const mariadb_tests_enabled = true;
   const mongo_tests_enabled = true;
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -419,7 +419,7 @@ import { createReadStream } from 'node:fs';
 
       // ensure the test database exists
       assert.ok(
-        await mongodb_client.databaseExists('test_db'),
+        await mongodb_client.databaseExists(mongo_test_db_name),
         'Database does not exist.'
       );
 

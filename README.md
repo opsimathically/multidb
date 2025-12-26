@@ -1,10 +1,16 @@
 # Multidb Library
 
-This is not intended for use by every person, in every case. It is designed for me, in my use cases. If you have similar use cases, it could be useful to you, but I'd prefer you use your own code for your own cases. I do things that could be seen as strange, embedding data in places, collections or otherwise, that only makes sense for tools that I've personally developed. If you use this code you may find things in places you don't expect or need.
+**_This code is not intended for use by every person, in every case. It is designed for me, in my use cases._** If you have similar use cases, it could be useful to you, but I'd prefer you use your own code for your own cases. I do things that could be seen as strange, embedding data in places, collections or otherwise, that only makes sense for tools that I've personally developed. If you use this code you may find things in places you don't expect or need.
 
 The intent of this code is to take code that I use for database purposes, within my own tool libraries and standardize them into a single library which can be imported and easily used for the development and integration of new tools or packages I'm developing.
 
 Despite what the volume of the code looks like, I primarily use mongodb due to it's ability to rapidly prototype data in a fast changing environment. MariaDB and RDBMs are useful to me, sometimes, but they require more effort and planning and work better for rigidly planned data structures. A significant portion of the code in this repository is MariaDB oriented code designed to make my life working with SQL easier in the case I choose to use it, which is again, rarely.
+
+## Usage Examples
+
+The unit test for this project contains relevant usage code. You can use it as a guideline. We don't include any sample code in this readme, as it would likely become outdated at some point, whereas the unit test code will not.
+
+[test/index.test.ts](./test/index.test.ts)
 
 ## MariaDB
 
@@ -26,256 +32,6 @@ Our MariaDB client provides a simple way to template different query types.
 - Stacked Insert Query: query which takes a stack of multiple sets of arguments.
 - Buffered Stacked Insert Query: stacked query which will stack query arguments until a limit size before flushing/executing the query.
 
-### MariaDB Usage Examples
-
-```typescript
-import {
-  MongoDB,
-  MariaDBDumpImporter,
-  MariaDBDumpExporter,
-  MariaDB,
-  MariaDBDatabaseSchemaIntrospector,
-  MariaDBSQLQueryValidator
-} from '@opsimathically/multidb';
-
-// Example: Using an Admin Pool to Create/Drop a database.
-
-// standard pool configuration
-const mariadb_pool_config = {
-  connectionLimit: 500,
-  waitForConnections: true,
-  queueLimit: 65535,
-  host: '127.0.0.1',
-  user: 'your_mariadb_user',
-  password: 'your_mariadb_password!',
-  debug: false,
-  insecureAuth: true
-};
-
-// admin pool configuration
-const mariadb_adminpool_config = {
-  connectionLimit: 500,
-  waitForConnections: true,
-  queueLimit: 65535,
-  host: '127.0.0.1',
-  user: 'your_mariadb_user',
-  password: 'your_mariadb_password!',
-  debug: false,
-  insecureAuth: true
-};
-
-// entry point
-(async () => {
-  // create new client handle
-  const mariadb_client = new MariaDB();
-
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // %%% Admin Pools %%%%%%%%%%%%%%%%%%%
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-  // add an admin pool (this will be used for things like create/drop database)
-  await mariadb_client.addAdminPool({
-    name: 'db1_adminpool1',
-    pool_options: mariadb_adminpool_config
-  });
-
-  await mariadb_client.dropDatabaseIfExists({
-    adminpool: 'db1_adminpool1',
-    db: 'unit_test_db_1000'
-  });
-
-  await mariadb_client.createDatabaseIfNotExists({
-    adminpool: 'db1_adminpool1',
-    db: 'unit_test_db_1000'
-  });
-
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // %%% Import Database Schema From File %%%%%%%%%%%%%
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-  const importer = new MariaDBDumpImporter({
-    mysql_bin_path: 'mysql',
-    host: '127.0.0.1',
-    port: 3306,
-    user: 'your_mariadb_user',
-    password: 'your_mariadb_password!',
-    database: 'unit_test_db_1000',
-    default_character_set: 'utf8mb4',
-    use_mysql_pwd_env: true,
-    connect_timeout_seconds: 10
-  });
-
-  const import_db_result = await importer.importFile(
-    './test/sqldumps_used_by_test/testdb.sql'
-  );
-
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // %%% Export Database Schema To File %%%%%%%%%%%%%%%
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-  const exporter = new MariaDBDumpExporter({
-    host: '127.0.0.1',
-    port: 3306,
-    user: 'your_mariadb_user',
-    password: 'your_mariadb_password!',
-    database: 'unit_test_db_1000',
-    output_file_path: '/tmp/unit_test_db_export_test.sql',
-    extra_args: ['--single-transaction', '--quick', '--routines', '--events']
-  });
-
-  const export_db_result = await exporter.exportDatabase();
-
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // %%% Standard Pools %%%%%%%%%%%%%%%%
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-  // add a pool
-  await mariadb_client.addPool({
-    name: 'db1_pool1',
-    db: 'unit_test_db_1000',
-    pool_options: mariadb_pool_config
-  });
-
-  type example_insert_t = [string, string];
-
-  // add a query
-  const insert_query = await mariadb_client.addQuery<
-    example_insert_t,
-    ResultSetHeader
-  >({
-    pool: 'db1_pool1',
-    db: 'unit_test_db_1000',
-    name: 'testInsertQuery',
-    query: `
-        INSERT INTO unit_test_db_1000.new_table
-        (
-          column_1,
-          column_2
-        )
-        VALUES
-        (
-          ?,
-          ?
-        )`
-  });
-
-  // insert some data a single record at a time
-  await insert_query.execute({
-    args: ['something1', 'something2']
-  });
-  await insert_query.execute({
-    args: ['something3', 'something4']
-  });
-
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // %%% Basic Stacked Queries %%%%%%%%%%%%%%%%%%%%%%%
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-  const stacked_insert = await mariadb_client.addStackedInsertQuery<
-    [string, string]
-  >({
-    pool: 'db1_pool1',
-    db: 'unit_test_db_1000',
-    name: 'testInsertQuery',
-    query_insert_and_columns: `INSERT INTO unit_test_db_1000.new_table  ( column_1, column_2 )`,
-    expected_value_set_count: 2
-  });
-
-  await stacked_insert?.execute({
-    args_array: [
-      ['hello1', 'hello2'],
-      ['hello3', 'hello4'],
-      ['hello5', 'hello6']
-    ]
-  });
-
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // %%% Buffered Stacked Query %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-  const buffered_stacked_insert =
-    await mariadb_client.addBufferedStackedInsertQuery<[string, string]>({
-      pool: 'db1_pool1',
-      db: 'unit_test_db_1000',
-      name: 'testInsertQuery',
-      query_insert_and_columns: `INSERT INTO unit_test_db_1000.new_table  ( column_1, column_2 )`,
-      expected_value_set_count: 2,
-      max_timeout_for_insert_when_no_new_records_ms: 1000,
-      max_rows_before_insert_len: 10
-    });
-
-  assert(buffered_stacked_insert, 'Failed to create buffered stacked insert.');
-
-  await buffered_stacked_insert.bufferedExecute({
-    args_array: [
-      ['hello1', 'hello2'],
-      ['hello3', 'hello4'],
-      ['hello5', 'hello6']
-    ]
-  });
-
-  await buffered_stacked_insert.bufferedExecute({
-    args_array: [
-      ['hello7', 'hello8'],
-      ['hello9', 'hello10'],
-      ['hello11', 'hello12'],
-      ['hello13', 'hello14']
-    ]
-  });
-
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // %%% Select Queries %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-  type select_row_example_t = {
-    id: number;
-    column_1: string;
-    column_2: string;
-  };
-
-  const select_query_example = await mariadb_client.addQuery<
-    null,
-    select_row_example_t
-  >({
-    pool: 'db1_pool1',
-    db: 'unit_test_db_1000',
-    name: 'selectRecords',
-    query: `SELECT * FROM unit_test_db_1000.new_table;`
-  });
-
-  // Iterate rows via callback.  This uses streams via the callback API in the underlying
-  // mysql library.  This is preferred for larger selects where you have to iterate over a
-  // large number of rows.  Rows are fetched one at a time, WITHOUT using a cursor, so memory
-  // exhaustion is less of a risk.
-  await select_query_example.execute({
-    args: null,
-    cb: async function (params) {
-      //
-      // params.row will be of type select_row_example_t
-      //
-      // you can stop reading results at any time by returning
-      // the string breakloop.
-      // eg:
-      // return 'breakloop';
-    }
-  });
-
-  // you can also just fetch all rows at once.  In this case
-  // it'll be an array of select_row_example_t.
-  const selected_rows = await select_query_example.execute();
-
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // %%% Shutdown %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-  // this will close all connections in all pools
-  const shutdown_ok = await mariadb_client.shutdown({
-    admin_pools: true,
-    standard_pools: true
-  });
-})();
-```
-
 ## MariaDBDumpImporter
 
 This is a frontend for working with the mysql/mariadb binary directly for the purposes of importing dump files created with mysqldump. **\_This is by its nature, unsafe**,
@@ -283,31 +39,13 @@ so do take care when using it. The reason we're using this instead of the npm my
 not guaranteed to behave correctly. The mysql binary is guaranteed, so we need to bite the bullet and just accept that we'll be spawning processes and shoving data
 into the binary stdin.
 
-```typescript
-const importer = new MariaDBDumpImporter({
-  mysql_bin_path: 'mysql',
-  host: '127.0.0.1',
-  port: 3306,
-  user: 'your_mariadb_user',
-  password: 'your_mariadb_password!',
-  database: 'unit_test_db_1000',
-  default_character_set: 'utf8mb4',
-  use_mysql_pwd_env: true,
-  connect_timeout_seconds: 10
-});
-
-const result = await importer.importFile(
-  '/home/tourist/github_resume_projects/multidb/test/sqldumps_used_by_test/testdb.sql'
-);
-```
-
 ## MariaDB, why not PostgreSQL?
 
 I use mariadb instead of mysql for most of my RDBMS requirements. The reason I don't use postgres, is mostly a legacy thing. Postgres wasn't particularly popular in the past, and I am paleolithic, and a lot of features felt like they were missing prior to recency, and long story short I'm not sure the juice would be worth the effort put into converting all my SQL into postgres. MariaDB does what I need, for what I need it for, and maybe in the future I'll consider postgresql but currently I'm fine with mariadb.
 
 ## MongoDB Streaming Events (watch)
 
-To use streaming events your server must be configured to be a replication set. A single server can be a replication set, and there is virtually no downside to being configured in that state. However, a default install is not in that configuration.
+To use streaming events your server must be configured to be a replication set. A single server can be a replication set, and there is virtually no downside to being configured in that state. However, a default mongo install is not in that configuration.
 
 If you want to enable a stand-alone replica set on your own database, follow the instructions below. Doing so will give you the ability to subscribe to change streams to monitor events live as they happen on the server.
 
@@ -382,7 +120,7 @@ npm install @opsimathically/multidb
 
 ## Building from source
 
-This package is intended to be run via npm, but if you'd like to build from source,
+This package is intended to be installed via npm, but if you'd like to build from source,
 clone this repo, enter directory, and run `npm install` for dev dependencies, then run
 `npm run build`.
 
