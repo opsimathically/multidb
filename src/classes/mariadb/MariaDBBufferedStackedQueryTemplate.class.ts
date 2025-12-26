@@ -12,19 +12,10 @@ export class MariaDBBufferedStackedQueryTemplate<query_args_g, result_row_g> {
   db: string;
   pool: MariaDBPool;
   sha1: string;
-  buffered_array:
-    | BufferedArray<
-        query_args_g,
-        MariaDBBufferedStackedQueryTemplate<query_args_g, result_row_g>
-      >
-    | undefined;
-  flush_info: {
-    total_flushed_cnt: number;
-    last_flushed_cnt: number;
-  } = {
-    total_flushed_cnt: 0,
-    last_flushed_cnt: 0
-  };
+  buffered_array: BufferedArray<
+    query_args_g,
+    MariaDBBufferedStackedQueryTemplate<query_args_g, result_row_g>
+  >;
 
   constructor(params: {
     query_insert_and_columns: string;
@@ -55,8 +46,6 @@ export class MariaDBBufferedStackedQueryTemplate<query_args_g, result_row_g> {
       }) {
         // console.log({ flush_len: params.items.length });
         await params.extra.execute({ args_array: params.items });
-        params.extra.flush_info.last_flushed_cnt = params.items.length;
-        params.extra.flush_info.total_flushed_cnt += params.items.length;
       }
     });
   }

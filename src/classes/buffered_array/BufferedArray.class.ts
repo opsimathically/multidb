@@ -17,6 +17,14 @@ export class BufferedArray<T, extra_t> {
   private is_flushing: boolean = false;
   extra: extra_t;
 
+  flush_info: {
+    total_flushed_cnt: number;
+    last_flushed_cnt: number;
+  } = {
+    total_flushed_cnt: 0,
+    last_flushed_cnt: 0
+  };
+
   constructor(params: {
     config: buffered_array_config_i;
     flush_callback: flush_callback_t<T, extra_t>;
@@ -86,6 +94,8 @@ export class BufferedArray<T, extra_t> {
 
     const extra = this.extra;
     await this.flush_callback({ items: items_to_flush, extra: extra });
+    this.flush_info.last_flushed_cnt = items_to_flush.length;
+    this.flush_info.total_flushed_cnt += items_to_flush.length;
     this.is_flushing = false;
   }
 

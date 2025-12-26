@@ -6,6 +6,7 @@ import type {
   db_change_stream_handler_t
 } from './classes/mongodb/MongoDB.class';
 import { MongoDB } from './classes/mongodb/MongoDB.class';
+import { MongoDBBufferedStackedInsert } from './classes/mongodb/MongoDBBufferedStackedInsert.class';
 
 import type {
   mariadb_query_data_t,
@@ -193,7 +194,7 @@ export {
   // %%% MongoDB %%%%%%%%%%%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   MongoDB,
-
+  MongoDBBufferedStackedInsert,
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% MariaDBError %%%%%%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

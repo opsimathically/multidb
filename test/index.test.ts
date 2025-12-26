@@ -5,6 +5,7 @@ import type { ChangeStream, ChangeStreamDocument, Document } from 'mongodb';
 
 import {
   MongoDB,
+  MongoDBBufferedStackedInsert,
   MariaDBDumpImporter,
   MariaDBDumpExporter,
   MariaDB,
@@ -35,7 +36,7 @@ import { createReadStream } from 'node:fs';
   };
 
   // define db/collection/gfs bucket
-  const db_name = 'test_db';
+  const mongo_test_db_name = 'mongo_unit_test_db_1000';
   const collection_name = 'test_collection';
   const gfs_bucket_name = 'test_file_content_bucket';
 
@@ -74,8 +75,8 @@ import { createReadStream } from 'node:fs';
   FLUSH PRIVILEGES;
   */
 
-  const mariadb_tests_enabled = true;
-  const mongo_tests_enabled = false;
+  const mariadb_tests_enabled = false;
+  const mongo_tests_enabled = true;
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%% MariaDB Tests %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -294,8 +295,10 @@ import { createReadStream } from 'node:fs';
         if (count_result[0]) {
           assert.ok(
             count_result[0].row_count ===
-              buffered_stacked_insert.flush_info.total_flushed_cnt + 3,
-            `The new_table count was an unexpected length (${count_result[0].row_count} found but ${buffered_stacked_insert.flush_info.total_flushed_cnt} was counted)`
+              buffered_stacked_insert.buffered_array.flush_info
+                .total_flushed_cnt +
+                3,
+            `The new_table count was an unexpected length (${count_result[0].row_count} found but ${buffered_stacked_insert.buffered_array.flush_info.total_flushed_cnt} was counted)`
           );
         }
       }
@@ -402,9 +405,14 @@ import { createReadStream } from 'node:fs';
         'Admin database does not exist.'
       );
 
+      // if our test database already exists, delete it first
+      if (await mongodb_client.databaseExists(mongo_test_db_name)) {
+        await mongodb_client.deleteDatabase(mongo_test_db_name);
+      }
+
       // create a new database
       const db_created_ok = await mongodb_client.createDatabase({
-        name: db_name,
+        name: mongo_test_db_name,
         info: { description: 'any description' }
       });
       assert.ok(db_created_ok, 'Database creation failed.');
@@ -417,13 +425,16 @@ import { createReadStream } from 'node:fs';
 
       // create a collection
       await mongodb_client.createCollection({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name
       });
 
       // ensure the collection exists
       assert.ok(
-        await mongodb_client.collectionExists(db_name, collection_name),
+        await mongodb_client.collectionExists(
+          mongo_test_db_name,
+          collection_name
+        ),
         'Collection does not exist.'
       );
 
@@ -454,9 +465,10 @@ import { createReadStream } from 'node:fs';
         async onChange(change_event: ChangeStreamDocument<Document>) {
           const self_ref = this;
           self_ref.arbitrary_activation_count++;
-          // switch on the operation type
+
           if (change_event.operationType) {
-            console.log('Collection Event: ' + change_event.operationType);
+            // uncomment to debug
+            // console.log('Collection Event: ' + change_event.operationType);
           }
         }
       }
@@ -467,7 +479,7 @@ import { createReadStream } from 'node:fs';
 
       // create event listener
       await mongodb_client.subscribeToCollectionChangeStream({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         event_handler: coll_change_stream_event_handler
       });
@@ -500,7 +512,8 @@ import { createReadStream } from 'node:fs';
           self_ref.arbitrary_activation_count++;
 
           if (change_event.operationType) {
-            console.log('DB Event: ' + change_event.operationType);
+            // uncomment to debug
+            // console.log('DB Event: ' + change_event.operationType);
           }
         }
       }
@@ -511,7 +524,7 @@ import { createReadStream } from 'node:fs';
 
       // create event listener
       await mongodb_client.subscribeToDatabaseChangeStream({
-        db: db_name,
+        db: mongo_test_db_name,
         event_handler: db_change_stream_event_handler
       });
 
@@ -526,7 +539,7 @@ import { createReadStream } from 'node:fs';
 
       // index should not exist before creation
       let index_already_exists_check = await mongodb_client.indexAlreadyExists({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         spec: test_index_spec
       });
@@ -534,7 +547,7 @@ import { createReadStream } from 'node:fs';
 
       // attempt to create index
       await mongodb_client.createIndexOnCollection({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         unique: true,
         spec: test_index_spec
@@ -542,7 +555,7 @@ import { createReadStream } from 'node:fs';
 
       // index should exist after creation
       index_already_exists_check = await mongodb_client.indexAlreadyExists({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         spec: test_index_spec
       });
@@ -550,7 +563,7 @@ import { createReadStream } from 'node:fs';
 
       // attempt to delete the index
       const deleted_index_ok = await mongodb_client.deleteIndexFromCollection({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         spec: test_index_spec
       });
@@ -558,7 +571,7 @@ import { createReadStream } from 'node:fs';
 
       // index should not exist after deletion
       index_already_exists_check = await mongodb_client.indexAlreadyExists({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         spec: test_index_spec
       });
@@ -570,7 +583,7 @@ import { createReadStream } from 'node:fs';
 
       // test insert single record
       const insert_one_result = await mongodb_client.insertSingleRecord({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         write_options: {
           ordered: true
@@ -581,7 +594,7 @@ import { createReadStream } from 'node:fs';
 
       // insert many records
       const insert_many_result = await mongodb_client.insertRecords({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         write_options: {
           ordered: true
@@ -595,9 +608,74 @@ import { createReadStream } from 'node:fs';
       });
       assert(insert_many_result?.acknowledged);
 
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      // %%% Buffered Stacked Insert Tests %%%%%%%%%%%%%
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      // we set the interval ms to 0 to immediately flush records if there are
+      // any dangling.
+      const mongo_stacked_insert = new MongoDBBufferedStackedInsert({
+        db: mongo_test_db_name,
+        collection: collection_name,
+        interval_ms: 0,
+        max_length: 10,
+        mongodb_client: mongodb_client,
+        write_options: {
+          ordered: true
+        }
+      });
+
+      // don't use Array.fill here since somekey has a unique index on it
+      let buffered_insert_test_array = [];
+      for (let idx = 0; idx < 200; idx++) {
+        buffered_insert_test_array.push({
+          somekey: 'test-data' + idx,
+          otherkey: 4
+        });
+      }
+
+      await mongo_stacked_insert.bufferedInsert({
+        records: buffered_insert_test_array
+      });
+
+      // reassign data with unaligned data
+      buffered_insert_test_array = [];
+      for (let idx = 0; idx < 123; idx++) {
+        buffered_insert_test_array.push({
+          somekey: 'other-test-data' + idx,
+          otherkey: 4
+        });
+      }
+
+      await mongo_stacked_insert.bufferedInsert({
+        records: buffered_insert_test_array
+      });
+
+      assert.ok(
+        mongo_stacked_insert.buffered_array.flush_info.total_flushed_cnt ===
+          323,
+        `Flush count does not match the expecte record count (cnt: ${mongo_stacked_insert.buffered_array.flush_info.total_flushed_cnt}).`
+      );
+
+      // count documents exactly
+      const stacked_inserted_count = await mongodb_client.countDocuments({
+        db: mongo_test_db_name,
+        collection: collection_name,
+        filter: {},
+        options: { allowDiskUse: true }
+      });
+      assert.ok(
+        stacked_inserted_count === 328,
+        `Record count was supposed to be 328 but was ${stacked_inserted_count}`
+      );
+
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      // %%% Update Tests %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
       // update a single record
       const update_one_result = await mongodb_client.updateSingleRecord({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         find: {
           somekey: 'data0'
@@ -610,7 +688,7 @@ import { createReadStream } from 'node:fs';
 
       // update many test
       const update_many_result = await mongodb_client.updateRecords({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         find: {
           otherkey: 1
@@ -623,7 +701,7 @@ import { createReadStream } from 'node:fs';
 
       // upsert single record test
       const upsert_one_result = await mongodb_client.updateSingleRecord({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         find: {
           otherkey: 3
@@ -644,7 +722,7 @@ import { createReadStream } from 'node:fs';
 
       // find a single record
       const single_record = await mongodb_client.findSingleRecord({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         find: {
           otherkey: 2
@@ -654,7 +732,7 @@ import { createReadStream } from 'node:fs';
 
       // find multiple records and process them in a callback
       const find_many_records_cb_result = await mongodb_client.findRecords({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         find: {
           otherkey: 2
@@ -668,7 +746,7 @@ import { createReadStream } from 'node:fs';
 
       // run the find again but this time return the results as an array
       const find_many_records_array_result = await mongodb_client.findRecords({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         find: {
           otherkey: 2
@@ -678,7 +756,7 @@ import { createReadStream } from 'node:fs';
 
       // distinct values test
       const find_distinct_result = await mongodb_client.distinctValues({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         key: 'otherkey',
         find: {},
@@ -692,7 +770,7 @@ import { createReadStream } from 'node:fs';
 
       // count documents exactly
       const count_documents_result = await mongodb_client.countDocuments({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         filter: {},
         options: { allowDiskUse: true }
@@ -702,7 +780,7 @@ import { createReadStream } from 'node:fs';
       // gather estimated document count
       const estimated_document_count_result =
         await mongodb_client.estimatedDocumentCount({
-          db: db_name,
+          db: mongo_test_db_name,
           collection: collection_name,
           options: {
             maxTimeMS: 50000
@@ -717,7 +795,7 @@ import { createReadStream } from 'node:fs';
       // aggregate collection records using callback
       let aggregation_coll_count = 0;
       await mongodb_client.aggregateCollection({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         pipeline: [
           {
@@ -734,7 +812,7 @@ import { createReadStream } from 'node:fs';
 
       // aggregate collection records to array
       const aggregate_coll_as_array = await mongodb_client.aggregateCollection({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         pipeline: [
           {
@@ -788,7 +866,7 @@ import { createReadStream } from 'node:fs';
 
       const random_sample_as_array =
         await mongodb_client.randomSampleFromCollection({
-          db: db_name,
+          db: mongo_test_db_name,
           collection: collection_name,
           sample_size_n: 3
         });
@@ -797,7 +875,7 @@ import { createReadStream } from 'node:fs';
       // run random sampling via callback
       let random_sample_via_callback_count = 0;
       await mongodb_client.randomSampleFromCollection({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         sample_size_n: 3,
         cb: async function (params) {
@@ -813,7 +891,7 @@ import { createReadStream } from 'node:fs';
       // delete the first matching single record
       const delete_single_record_result =
         await mongodb_client.deleteSingleRecord({
-          db: db_name,
+          db: mongo_test_db_name,
           collection: collection_name,
           find: {
             otherkey: 2
@@ -823,7 +901,7 @@ import { createReadStream } from 'node:fs';
 
       // multi delete test
       const delete_many_records_result = await mongodb_client.deleteRecords({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name,
         find: {
           otherkey: 2
@@ -833,7 +911,7 @@ import { createReadStream } from 'node:fs';
 
       // delete a collection
       const delete_collection_result = await mongodb_client.deleteCollection({
-        db: db_name,
+        db: mongo_test_db_name,
         collection: collection_name
       });
       assert(delete_collection_result);
@@ -850,21 +928,21 @@ import { createReadStream } from 'node:fs';
 
       // create bucket test
       const create_bucket_result = await mongodb_client.GFS_createBucket({
-        db: db_name,
+        db: mongo_test_db_name,
         bucket_name: gfs_bucket_name
       });
       assert(create_bucket_result);
 
       // delete bucket after creation test
       const delete_bucket_result = await mongodb_client.GFS_deleteBucket({
-        db: db_name,
+        db: mongo_test_db_name,
         bucket_name: gfs_bucket_name
       });
       assert(delete_bucket_result);
 
       // store file from buffer test 1
       let object_id = await mongodb_client.GFS_storeFileFromBuffer({
-        db: db_name,
+        db: mongo_test_db_name,
         bucket_name: gfs_bucket_name,
         file_content_buffer: Buffer.from('AAAAAAAAA', 'ascii'),
         file_metadata: {
@@ -877,7 +955,7 @@ import { createReadStream } from 'node:fs';
 
       // store file from buffer test 2
       object_id = await mongodb_client.GFS_storeFileFromBuffer({
-        db: db_name,
+        db: mongo_test_db_name,
         bucket_name: gfs_bucket_name,
         file_content_buffer: Buffer.from('BBBBBBBBB', 'ascii'),
         file_metadata: {
@@ -890,7 +968,7 @@ import { createReadStream } from 'node:fs';
 
       // store file from buffer test 3
       object_id = await mongodb_client.GFS_storeFileFromBuffer({
-        db: db_name,
+        db: mongo_test_db_name,
         bucket_name: gfs_bucket_name,
         file_content_buffer: Buffer.from('CCCCCCCC', 'ascii'),
         file_metadata: {
@@ -904,7 +982,7 @@ import { createReadStream } from 'node:fs';
       // store file from stream test
       const store_from_stream_object_id =
         await mongodb_client.GFS_storeFileFromStream({
-          db: db_name,
+          db: mongo_test_db_name,
           bucket_name: gfs_bucket_name,
           file_content_stream: createReadStream(
             './test/files_used_by_test/test_file_1.txt'
@@ -920,7 +998,7 @@ import { createReadStream } from 'node:fs';
       // find single file using cb test
       let find_single_file_using_cb_result = false;
       await mongodb_client.GFS_findSingleFileGFS({
-        db: db_name,
+        db: mongo_test_db_name,
         bucket_name: gfs_bucket_name,
         find: {
           'metadata.anything': 'herealso'
@@ -934,7 +1012,7 @@ import { createReadStream } from 'node:fs';
       // find/download a single file without using callback test
       const find_single_file_result =
         await mongodb_client.GFS_findSingleFileGFS({
-          db: db_name,
+          db: mongo_test_db_name,
           bucket_name: gfs_bucket_name,
           find: {
             'metadata.anything': 'herealso'
@@ -945,7 +1023,7 @@ import { createReadStream } from 'node:fs';
       // find files with callback test
       let find_files_with_callback_result: boolean = false;
       await mongodb_client.GFS_findFiles({
-        db: db_name,
+        db: mongo_test_db_name,
         bucket_name: gfs_bucket_name,
         find: {
           'metadata.anything': 'here'
@@ -958,7 +1036,7 @@ import { createReadStream } from 'node:fs';
 
       // find files as array test
       const find_files_as_array_result = await mongodb_client.GFS_findFiles({
-        db: db_name,
+        db: mongo_test_db_name,
         bucket_name: gfs_bucket_name,
         find: {
           'metadata.anything': 'here'
@@ -969,7 +1047,7 @@ import { createReadStream } from 'node:fs';
       // update single file metadata test
       const update_single_file_metadata_result =
         await mongodb_client.GFS_updateSingleFileMetadata({
-          db: db_name,
+          db: mongo_test_db_name,
           bucket_name: gfs_bucket_name,
           find: {
             'metadata.anything': 'herealso'
@@ -983,7 +1061,7 @@ import { createReadStream } from 'node:fs';
       // update multiple file metadata test
       const update_multi_file_metadata_result =
         await mongodb_client.GFS_updateFilesMetadata({
-          db: db_name,
+          db: mongo_test_db_name,
           bucket_name: gfs_bucket_name,
           find: {
             'metadata.anything': 'herealso'
@@ -1001,7 +1079,7 @@ import { createReadStream } from 'node:fs';
       // delete single file test
       const delete_single_file_result =
         await mongodb_client.GFS_deleteSingleFile({
-          db: db_name,
+          db: mongo_test_db_name,
           bucket_name: gfs_bucket_name,
           find: {
             'metadata.anything': 'here'
@@ -1011,7 +1089,7 @@ import { createReadStream } from 'node:fs';
 
       // delete files test (returns the number of files deleted)
       const deleted_file_count = await mongodb_client.GFS_deleteFiles({
-        db: db_name,
+        db: mongo_test_db_name,
         bucket_name: gfs_bucket_name,
         find: {
           'metadata.anything': 'here'
@@ -1021,11 +1099,11 @@ import { createReadStream } from 'node:fs';
 
       // delete the database
       const delete_database_result =
-        await mongodb_client.deleteDatabase(db_name);
+        await mongodb_client.deleteDatabase(mongo_test_db_name);
       assert(delete_database_result);
 
       // ensure the test database no longer exists
-      assert(!(await mongodb_client.databaseExists(db_name)));
+      assert(!(await mongodb_client.databaseExists(mongo_test_db_name)));
 
       // ensure we've seen some event activations via stream by the time we've gotten here
       assert.ok(
