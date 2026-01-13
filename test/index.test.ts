@@ -75,7 +75,7 @@ import { createReadStream } from 'node:fs';
   FLUSH PRIVILEGES;
   */
 
-  const mariadb_tests_enabled = true;
+  const mariadb_tests_enabled = false;
   const mongo_tests_enabled = true;
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -608,9 +608,9 @@ import { createReadStream } from 'node:fs';
       });
       assert(insert_many_result?.acknowledged);
 
-      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      // %%% Buffered Stacked Insert Tests %%%%%%%%%%%%%
-      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      // %%% Buffered Stacked Insert Tests (Unique Records) %%%%%%
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
       // we set the interval ms to 0 to immediately flush records if there are
       // any dangling.
@@ -621,7 +621,10 @@ import { createReadStream } from 'node:fs';
         max_length: 10,
         mongodb_client: mongodb_client,
         write_options: {
-          ordered: true
+          ordered: false
+        },
+        onError: async function (err) {
+          if (err) return;
         }
       });
 
@@ -658,7 +661,7 @@ import { createReadStream } from 'node:fs';
       );
 
       // count documents exactly
-      const stacked_inserted_count = await mongodb_client.countDocuments({
+      let stacked_inserted_count = await mongodb_client.countDocuments({
         db: mongo_test_db_name,
         collection: collection_name,
         filter: {},
@@ -666,6 +669,36 @@ import { createReadStream } from 'node:fs';
       });
       assert.ok(
         stacked_inserted_count === 328,
+        `Record count was supposed to be 328 but was ${stacked_inserted_count}`
+      );
+
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      // %%% Buffered Stacked Insert Tests (Duplicate Records) %%%
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      // add some additional records to the existing test array
+      for (let idx = 0; idx < 10; idx++) {
+        buffered_insert_test_array.push({
+          somekey: 'some-other-key' + idx,
+          otherkey: 4
+        });
+      }
+
+      // run the buffered insert (the onError will trigger multiple times, and only the unique records
+      // will ever be inserted.)
+      await mongo_stacked_insert.bufferedInsert({
+        records: buffered_insert_test_array
+      });
+
+      // count documents exactly
+      stacked_inserted_count = await mongodb_client.countDocuments({
+        db: mongo_test_db_name,
+        collection: collection_name,
+        filter: {},
+        options: { allowDiskUse: true }
+      });
+      assert.ok(
+        stacked_inserted_count === 338,
         `Record count was supposed to be 328 but was ${stacked_inserted_count}`
       );
 

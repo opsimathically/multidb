@@ -1,7 +1,10 @@
 {
   "name": "@opsimathically/multidb",
   "version": "0.0.1",
-  "description": "Classes we utilize for operating with multiple different database backends.",
+  "description": "Database utilities .",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -11,7 +14,8 @@
     "docs": "typedoc"
   },
   "keywords": [
-    "set_keywords"
+    "mongodb",
+    "mariadb"
   ],
   "homepage": "https://github.com/opsimathically/multidb",
   "devDependencies": {
@@ -34,6 +38,10 @@
   },
   "author": "Jason Medeiros",
   "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opsimathically/multidb.git"
+  },
   "dependencies": {
     "@swc/core": "^1.11.24",
     "@types/command-line-args": "^5.2.3",
